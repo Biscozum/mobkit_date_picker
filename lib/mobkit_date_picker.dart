@@ -1,4 +1,4 @@
-library infact_calendar;
+library mobkit_date_picker;
 
 export './src/calendar.dart';
 export 'src/standard_calendar/model/calendar_config_model.dart';
