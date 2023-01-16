@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:infact_calendar/infact_calendar.dart';
+import 'package:mobkit_date_picker/mobkit_date_picker.dart';
 
 void main() {
   runApp(const MyApp());

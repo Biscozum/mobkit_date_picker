@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:infact_calendar/src/standard_calendar/model/calendar_config_model.dart';
-import 'package:infact_calendar/src/standard_calendar/calendar_date_selection_bar.dart';
-import 'package:infact_calendar/src/standard_calendar/calendar_header.dart';
-import 'package:infact_calendar/src/standard_calendar/calendar_month_selection_bar.dart';
-import 'package:infact_calendar/src/standard_calendar/calendar_weekdays_bar.dart';
-import 'package:infact_calendar/src/standard_calendar/calendar_year_selection_bar.dart';
+import 'package:mobkit_date_picker/src/standard_calendar/model/calendar_config_model.dart';
+import 'package:mobkit_date_picker/src/standard_calendar/calendar_date_selection_bar.dart';
+import 'package:mobkit_date_picker/src/standard_calendar/calendar_header.dart';
+import 'package:mobkit_date_picker/src/standard_calendar/calendar_month_selection_bar.dart';
+import 'package:mobkit_date_picker/src/standard_calendar/calendar_weekdays_bar.dart';
+import 'package:mobkit_date_picker/src/standard_calendar/calendar_year_selection_bar.dart';
 
 class StandardPicker extends StatelessWidget {
   const StandardPicker({

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:infact_calendar/infact_calendar.dart';
-import 'package:infact_calendar/src/extensions/date_extensions.dart';
+import 'package:mobkit_date_picker/src/extensions/date_extensions.dart';
+import '../../mobkit_date_picker.dart';
 import '../standard_calendar/datecell_renderobject.dart';
 import 'month_cell.dart';
 

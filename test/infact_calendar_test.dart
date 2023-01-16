@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:infact_calendar/src/extensions/date_extensions.dart';
+import 'package:mobkit_date_picker/src/extensions/date_extensions.dart';
 
 void main() {
   test('check isSameDay datetime extension', () {

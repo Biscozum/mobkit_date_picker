@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:infact_calendar/src/extensions/date_extensions.dart';
+import 'package:mobkit_date_picker/src/extensions/date_extensions.dart';
 import 'model/calendar_config_model.dart';
 import 'calendar_date_cell.dart';
 import 'datecell_renderobject.dart';
