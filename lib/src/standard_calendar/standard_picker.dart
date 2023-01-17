@@ -14,6 +14,8 @@ class StandardPicker extends StatelessWidget {
     required this.calendarDate,
     required this.selectedDate,
     required this.selectedDates,
+    required this.onSelectionChange,
+    required this.onRangeSelectionChange,
   }) : super(key: key);
 
   final StandardCalendarConfigModel? config;
@@ -21,48 +23,48 @@ class StandardPicker extends StatelessWidget {
   final ValueNotifier<DateTime> calendarDate;
   final ValueNotifier<DateTime> selectedDate;
   final ValueNotifier<List<DateTime>> selectedDates;
-
+  final ValueChanged<DateTime> onSelectionChange;
+  final Function(DateTime, DateTime) onRangeSelectionChange;
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.white,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          if (config?.title != null) Header(config!.title!),
-          const SizedBox(
-            height: 30,
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        if (config?.title != null) Header(config!.title!),
+        const SizedBox(
+          height: 30,
+        ),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 10),
+          child: Row(
+            children: [
+              Expanded(flex: 8, child: months),
+              Expanded(flex: 6, child: YearSelectionBar(calendarDate)),
+            ],
           ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10),
-            child: Row(
-              children: [
-                Expanded(flex: 8, child: months),
-                Expanded(flex: 6, child: YearSelectionBar(calendarDate)),
-              ],
-            ),
-          ),
-          const SizedBox(
-            height: 25,
-          ),
-          WeekDaysBar(
-            config: config,
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-          SizedBox(
-              height: 290,
-              child: Container(
-                  color: Colors.transparent,
-                  child: DateSelectionBar(
-                    calendarDate,
-                    selectedDate,
-                    selectedDates,
-                    config: config,
-                  ))),
-        ],
-      ),
+        ),
+        const SizedBox(
+          height: 25,
+        ),
+        WeekDaysBar(
+          config: config,
+        ),
+        const SizedBox(
+          height: 10,
+        ),
+        SizedBox(
+            height: 290,
+            child: Container(
+                color: Colors.transparent,
+                child: DateSelectionBar(
+                  calendarDate,
+                  selectedDate,
+                  selectedDates,
+                  config: config,
+                  onSelectionChange: onSelectionChange,
+                  onRangeSelectionChange: onRangeSelectionChange,
+                ))),
+      ],
     );
   }
 }

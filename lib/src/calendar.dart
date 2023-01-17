@@ -11,9 +11,10 @@ class StandardCalendar extends StatelessWidget {
   late final ValueNotifier<DateTime> selectedDate;
   late final ValueNotifier<List<DateTime>> selectedDates;
   final StandardCalendarConfigModel? config;
-
+  final ValueChanged<DateTime> onSelectionChange;
+  final Function(DateTime firstDate, DateTime lastDate) onRangeSelectionChange;
   StandardCalendar(DateTime calendarDate, DateTime? selectedDate, List<DateTime>? selectedDates,
-      {Key? key, this.config})
+      {Key? key, this.config, required this.onSelectionChange, required this.onRangeSelectionChange})
       : super(key: key) {
     this.calendarDate = ValueNotifier<DateTime>(calendarDate);
     this.selectedDate = ValueNotifier<DateTime>(selectedDate ?? DateTime.now());
@@ -25,21 +26,26 @@ class StandardCalendar extends StatelessWidget {
     initializeDateFormatting();
     var months = MonthSelectionBar(calendarDate);
     return StandardPicker(
-        config: config,
-        months: months,
-        calendarDate: calendarDate,
-        selectedDate: selectedDate,
-        selectedDates: selectedDates);
+      config: config,
+      months: months,
+      calendarDate: calendarDate,
+      selectedDate: selectedDate,
+      selectedDates: selectedDates,
+      onSelectionChange: onSelectionChange,
+      onRangeSelectionChange: onRangeSelectionChange,
+    );
   }
 }
 
 class MonthAndYearCalendar extends StatelessWidget {
   late final ValueNotifier<DateTime> calendarDate;
   final MonthAndYearConfigModel? config;
+  final ValueChanged<DateTime> onSelectionChange;
+  final Function(DateTime firstDate, DateTime lastDate) onRangeSelectionChange;
   late final ValueNotifier<DateTime> selectedDate;
   late final ValueNotifier<List<DateTime>> selectedDates;
   MonthAndYearCalendar(DateTime calendarDate, DateTime? selectedDate, List<DateTime>? selectedDates,
-      {Key? key, this.config})
+      {Key? key, this.config, required this.onSelectionChange, required this.onRangeSelectionChange})
       : super(key: key) {
     this.calendarDate = ValueNotifier<DateTime>(calendarDate);
     this.selectedDate = ValueNotifier<DateTime>(selectedDate ?? DateTime.now());
@@ -51,6 +57,8 @@ class MonthAndYearCalendar extends StatelessWidget {
     initializeDateFormatting();
     return MonthAndYearPicker(
         monthAndYearConfigModel: config,
+        onSelectionChange: onSelectionChange,
+        onRangeSelectionChange: onRangeSelectionChange,
         calendarDate: calendarDate,
         selectedDate: selectedDate,
         selectedDates: selectedDates);

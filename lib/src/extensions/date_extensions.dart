@@ -11,6 +11,31 @@ extension DateTimeExtension on DateTime {
     }
   }
 
+  bool? isAfterOrEqualTo(DateTime dateTime) {
+    final date = this;
+    final isAtSameMomentAs = dateTime.isAtSameMomentAs(date);
+    return isAtSameMomentAs | date.isAfter(dateTime);
+  }
+
+  bool? isBeforeOrEqualTo(DateTime dateTime) {
+    final date = this;
+    final isAtSameMomentAs = dateTime.isAtSameMomentAs(date);
+    return isAtSameMomentAs | date.isBefore(dateTime);
+  }
+
+  bool? isBetween(
+    DateTime fromDateTime,
+    DateTime toDateTime,
+  ) {
+    final date = this;
+    if (date != null) {
+      final isAfter = date.isAfterOrEqualTo(fromDateTime) ?? false;
+      final isBefore = date.isBeforeOrEqualTo(toDateTime) ?? false;
+      return isAfter && isBefore;
+    }
+    return null;
+  }
+
   DateTime previous(int day) {
     if (day == weekday) {
       return subtract(const Duration(days: 7));

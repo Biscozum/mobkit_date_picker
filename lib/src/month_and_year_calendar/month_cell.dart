@@ -13,10 +13,11 @@ class MonthCell extends StatelessWidget {
   final ValueNotifier<List<DateTime>> selectedDates;
   final MonthAndYearConfigModel? config;
   final bool isSelectedNew;
-  final bool isFirstSelectedItem;
-  final bool isLastSelectedItem;
-  const MonthCell(this.date, this.isSelectedNew, this.isFirstSelectedItem, this.isLastSelectedItem, this.selectedDate,
-      this.selectedDates,
+  final bool isFirstLastSelectedItem;
+  final ValueChanged<DateTime> onSelectionChange;
+  final Function(DateTime, DateTime) onRangeSelectionChange;
+  const MonthCell(this.date, this.isSelectedNew, this.isFirstLastSelectedItem, this.selectedDate, this.selectedDates,
+      this.onRangeSelectionChange, this.onSelectionChange,
       {Key? key, this.config, this.enabled = true})
       : super(key: key);
 
@@ -31,8 +32,7 @@ class MonthCell extends StatelessWidget {
                   ? CellWidget(
                       DateFormat('MMMM').format(DateTime(0, date.month, 1)),
                       isSelected: isSelectedNew,
-                      isFirstSelectedItem: isFirstSelectedItem,
-                      isLastSelectedItem: isLastSelectedItem,
+                      isFirstLastSelectedItem: isFirstLastSelectedItem,
                       isCurrent: DateFormat.yMd().format(DateTime.now()) == DateFormat.yMd().format(date),
                       isEnabled: isEnabled,
                       monthAndYearConfig: config,
@@ -41,6 +41,7 @@ class MonthCell extends StatelessWidget {
                   : GestureDetector(
                       onTap: () {
                         this.selectedDate.value = date;
+                        onSelectionChange(date);
                       },
                       child: CellWidget(
                         DateFormat('MMMM').format(DateTime(0, date.month)),
@@ -53,6 +54,7 @@ class MonthCell extends StatelessWidget {
               : GestureDetector(
                   onTap: () {
                     this.selectedDate.value = date;
+                    onSelectionChange(date);
                   },
                   child: CellWidget(
                     DateFormat('MMMM').format(DateTime(0, date.month)),

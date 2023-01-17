@@ -12,10 +12,11 @@ class DateCell extends StatelessWidget {
   final ValueNotifier<DateTime> selectedDate;
   final StandardCalendarConfigModel? config;
   final bool isSelectedNew;
-  final bool isFirstSelectedItem;
-  final bool isLastSelectedItem;
-
-  const DateCell(this.date, this.isSelectedNew, this.isFirstSelectedItem, this.isLastSelectedItem, this.selectedDate,
+  final bool isFirstLastSelectedItem;
+  final ValueChanged<DateTime> onSelectionChange;
+  final Function(DateTime, DateTime) onRangeSelectionChange;
+  const DateCell(this.date, this.isSelectedNew, this.isFirstLastSelectedItem, this.selectedDate, this.onSelectionChange,
+      this.onRangeSelectionChange,
       {Key? key, this.config, this.enabled = true})
       : super(key: key);
 
@@ -30,8 +31,7 @@ class DateCell extends StatelessWidget {
                   ? CellWidget(
                       date.day.toString(),
                       isSelected: isSelectedNew,
-                      isFirstSelectedItem: isFirstSelectedItem,
-                      isLastSelectedItem: isLastSelectedItem,
+                      isFirstLastSelectedItem: isFirstLastSelectedItem,
                       isEnabled: isEnabled,
                       standardCalendarConfig: config,
                       calendarType: CalendarType.standardCalendar,
@@ -39,7 +39,10 @@ class DateCell extends StatelessWidget {
                     )
                   : GestureDetector(
                       onTap: () {
-                        if (isEnabled) this.selectedDate.value = date;
+                        if (isEnabled) {
+                          this.selectedDate.value = date;
+                          onSelectionChange(date);
+                        }
                       },
                       child: CellWidget(
                         date.day.toString(),
@@ -52,7 +55,10 @@ class DateCell extends StatelessWidget {
                     )
               : GestureDetector(
                   onTap: () {
-                    if (isEnabled) this.selectedDate.value = date;
+                    if (isEnabled) {
+                      this.selectedDate.value = date;
+                      onSelectionChange(date);
+                    }
                   },
                   child: CellWidget(
                     date.day.toString(),

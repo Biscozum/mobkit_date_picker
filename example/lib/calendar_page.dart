@@ -19,6 +19,8 @@ class _CalendarPageState extends State<CalendarPage> {
       null,
       null,
       config: calendarConfigModel,
+      onRangeSelectionChange: (firstDate, lastDate) {},
+      onSelectionChange: (DateTime value) {},
     );
     super.initState();
   }

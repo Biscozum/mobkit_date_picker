@@ -7,8 +7,10 @@ import '../../mobkit_date_picker.dart';
 class MonthAndYearScrollSelection extends StatefulWidget {
   final ValueNotifier<DateTime> calendarDate;
   final MonthAndYearConfigModel? monthAndYearConfigModel;
+  final ValueChanged<DateTime> onSelectionChange;
 
-  const MonthAndYearScrollSelection(this.calendarDate, this.monthAndYearConfigModel, {Key? key}) : super(key: key);
+  const MonthAndYearScrollSelection(this.calendarDate, this.monthAndYearConfigModel, this.onSelectionChange, {Key? key})
+      : super(key: key);
 
   @override
   State<MonthAndYearScrollSelection> createState() => _MonthAndYearScrollSelectionState();
@@ -128,6 +130,8 @@ class _MonthAndYearScrollSelectionState extends State<MonthAndYearScrollSelectio
             onSelectedItemChanged: (value) {
               widget.calendarDate.value =
                   DateTime(yearsList[value].year, widget.calendarDate.value.month, widget.calendarDate.value.day);
+              widget.onSelectionChange(
+                  DateTime(yearsList[value].year, widget.calendarDate.value.month, widget.calendarDate.value.day));
             },
             childCount: differenceInYears,
             itemBuilder: (context, index) {

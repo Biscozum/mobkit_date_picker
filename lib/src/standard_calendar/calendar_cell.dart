@@ -6,8 +6,7 @@ class CellWidget extends StatelessWidget {
   final String text;
   final bool isSelected;
   final bool isEnabled;
-  final bool isFirstSelectedItem;
-  final bool isLastSelectedItem;
+  final bool isFirstLastSelectedItem;
   final bool isWeekDaysBar;
   final bool isCurrent;
   final CalendarType calendarType;
@@ -17,8 +16,7 @@ class CellWidget extends StatelessWidget {
     this.text, {
     this.isSelected = false,
     this.isEnabled = true,
-    this.isFirstSelectedItem = false,
-    this.isLastSelectedItem = false,
+    this.isFirstLastSelectedItem = false,
     this.isWeekDaysBar = false,
     this.isCurrent = false,
     this.calendarType = CalendarType.standardCalendar,
@@ -48,8 +46,8 @@ class CellWidget extends StatelessWidget {
           child: AnimatedContainer(
             duration: configMonthAndYear.animationDuration,
             decoration: BoxDecoration(
-                color: isFirstSelectedItem || isLastSelectedItem
-                    ? configMonthAndYear.selectedColor
+                color: isFirstLastSelectedItem
+                    ? configMonthAndYear.isFirstLastItemColor
                     : isSelected
                         ? configMonthAndYear.selectedColor.withOpacity(
                             configMonthAndYear.selectionType == MonthAndYearSelectionType.selectionRange ? 0.70 : 1.0)
@@ -79,8 +77,8 @@ class CellWidget extends StatelessWidget {
             duration: configStandardCalendar.animationDuration,
             decoration: BoxDecoration(
                 color: isEnabled
-                    ? isFirstSelectedItem || isLastSelectedItem
-                        ? configStandardCalendar.selectedColor
+                    ? isFirstLastSelectedItem
+                        ? configStandardCalendar.isFirstLastItemColor
                         : isSelected
                             ? configStandardCalendar.selectedColor.withOpacity(
                                 configStandardCalendar.selectionType == SelectionType.rangeTap ? 0.70 : 1.0)

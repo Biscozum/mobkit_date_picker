@@ -11,7 +11,11 @@ class MonthList extends StatefulWidget {
   final ValueNotifier<List<DateTime>> selectedDates;
 
   final MonthAndYearConfigModel? config;
-  const MonthList(this.date, this.selectedDate, this.selectedDates, {Key? key, this.config}) : super(key: key);
+  final ValueChanged<DateTime> onSelectionChange;
+  final Function(DateTime, DateTime) onRangeSelectionChange;
+  const MonthList(this.date, this.selectedDate, this.selectedDates,
+      {Key? key, this.config, required this.onSelectionChange, required this.onRangeSelectionChange})
+      : super(key: key);
 
   @override
   State<MonthList> createState() => _MonthListState();
@@ -22,12 +26,18 @@ class _MonthListState extends State<MonthList> {
   Widget build(BuildContext context) {
     return Table(
       defaultVerticalAlignment: TableCellVerticalAlignment.middle,
-      children: generateMonths(widget.date, widget.selectedDate, widget.config, widget.selectedDates),
+      children: generateMonths(widget.date, widget.selectedDate, widget.config, widget.selectedDates,
+          widget.onSelectionChange, widget.onRangeSelectionChange),
     );
   }
 
-  List<TableRow> generateMonths(DateTime date, ValueNotifier<DateTime> selectedDate,
-      final MonthAndYearConfigModel? config, ValueNotifier<List<DateTime>> selectedDates) {
+  List<TableRow> generateMonths(
+      DateTime date,
+      ValueNotifier<DateTime> selectedDate,
+      final MonthAndYearConfigModel? config,
+      ValueNotifier<List<DateTime>> selectedDates,
+      ValueChanged<DateTime> onSelectionChange,
+      Function(DateTime, DateTime) onRangeSelectionChange) {
     List<TableRow> rowList = [];
     widget.selectedDates.value.sort((a, b) => a.compareTo(b));
     DateTime newDate = DateTime(date.year, 1, 1);
@@ -39,22 +49,19 @@ class _MonthListState extends State<MonthList> {
           Foo(
             index: dateTime.month,
             child: MonthCell(
-              dateTime,
-              selectedDates.value.contains(dateTime),
-              selectedDates.value.isNotEmpty
-                  ? selectedDates.value.first.month == dateTime.month
-                      ? true
-                      : false
-                  : false,
-              selectedDates.value.isNotEmpty
-                  ? selectedDates.value.last.month == dateTime.month
-                      ? true
-                      : false
-                  : false,
-              selectedDate,
-              selectedDates,
-              config: widget.config,
-            ),
+                dateTime,
+                selectedDates.value.contains(dateTime),
+                selectedDates.value.isNotEmpty
+                    ? selectedDates.value.first.month == dateTime.month ||
+                            selectedDates.value.last.month == dateTime.month
+                        ? true
+                        : false
+                    : false,
+                selectedDate,
+                selectedDates,
+                config: widget.config,
+                onRangeSelectionChange,
+                onSelectionChange),
           ),
         );
         newDate = DateTime(newDate.year, newDate.month + 1, 1);
@@ -85,7 +92,11 @@ class MonthAndYearBarSelection extends StatefulWidget {
   final ValueNotifier<DateTime> selectedDate;
   final ValueNotifier<List<DateTime>> selectedDates;
   final MonthAndYearConfigModel? config;
-  const MonthAndYearBarSelection(this.date, this.selectedDate, this.selectedDates, {Key? key, this.config})
+  final ValueChanged<DateTime> onSelectionChange;
+  final Function(DateTime, DateTime) onRangeSelectionChange;
+  const MonthAndYearBarSelection(
+      this.date, this.selectedDate, this.selectedDates, this.onSelectionChange, this.onRangeSelectionChange,
+      {Key? key, this.config})
       : super(key: key);
 
   @override
@@ -121,8 +132,8 @@ class _MonthAndYearBarSelectionState extends State<MonthAndYearBarSelection> {
     }
   }
 
-  Set<DateTime> getMonthsInBeteween(DateTime startDate, DateTime endDate) {
-    Set<DateTime> months = <DateTime>{};
+  List<DateTime> getMonthsInBeteween(DateTime startDate, DateTime endDate) {
+    List<DateTime> months = [];
     while (startDate.isBefore(endDate)) {
       months.add(DateTime(startDate.year, startDate.month));
       startDate = DateTime(startDate.year, startDate.month + 1);
@@ -141,11 +152,22 @@ class _MonthAndYearBarSelectionState extends State<MonthAndYearBarSelection> {
       } else {
         if (widget.selectedDates.value.first.isBefore(index)) {
           widget.selectedDates.value.addAll(getMonthsInBeteween(widget.selectedDates.value.first, index));
+          widget.onRangeSelectionChange(getMonthsInBeteween(widget.selectedDates.value.first, index).first,
+              getMonthsInBeteween(widget.selectedDates.value.first, index).last);
         } else if (widget.selectedDates.value.first.isAfter(index)) {
           widget.selectedDates.value.addAll(getMonthsInBeteween(
             index,
             widget.selectedDates.value.first,
           ));
+          widget.onRangeSelectionChange(
+              getMonthsInBeteween(
+                index,
+                widget.selectedDates.value.first,
+              ).first,
+              getMonthsInBeteween(
+                index,
+                widget.selectedDates.value.first,
+              ).last);
         }
       }
     } else {
@@ -173,6 +195,8 @@ class _MonthAndYearBarSelectionState extends State<MonthAndYearBarSelection> {
                           widget.selectedDates,
                           config: widget.config,
                           key: key2,
+                          onRangeSelectionChange: widget.onRangeSelectionChange,
+                          onSelectionChange: widget.onSelectionChange,
                         ),
                       );
                     });
@@ -189,6 +213,8 @@ class _MonthAndYearBarSelectionState extends State<MonthAndYearBarSelection> {
                   widget.selectedDates,
                   config: widget.config,
                   key: key2,
+                  onRangeSelectionChange: widget.onRangeSelectionChange,
+                  onSelectionChange: widget.onSelectionChange,
                 );
               }),
         );
@@ -204,6 +230,8 @@ class _MonthAndYearBarSelectionState extends State<MonthAndYearBarSelection> {
                 widget.selectedDates,
                 config: widget.config,
                 key: key2,
+                onRangeSelectionChange: widget.onRangeSelectionChange,
+                onSelectionChange: widget.onSelectionChange,
               );
             }),
       );

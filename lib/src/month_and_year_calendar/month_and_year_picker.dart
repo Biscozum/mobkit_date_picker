@@ -11,12 +11,16 @@ class MonthAndYearPicker extends StatelessWidget {
   final ValueNotifier<DateTime> calendarDate;
   final ValueNotifier<DateTime> selectedDate;
   final ValueNotifier<List<DateTime>> selectedDates;
+  final ValueChanged<DateTime> onSelectionChange;
+  final Function(DateTime, DateTime) onRangeSelectionChange;
   MonthAndYearPicker({
     Key? key,
     required this.monthAndYearConfigModel,
     required this.calendarDate,
     required this.selectedDate,
     required this.selectedDates,
+    required this.onSelectionChange,
+    required this.onRangeSelectionChange,
   }) : super(key: key) {
     if (monthAndYearConfigModel == null) {
       config = MonthAndYearConfigModel();
@@ -28,7 +32,7 @@ class MonthAndYearPicker extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (config.selectionType == MonthAndYearSelectionType.selectionScroll) {
-      return MonthAndYearScrollSelection(calendarDate, config);
+      return MonthAndYearScrollSelection(calendarDate, config, onSelectionChange);
     } else {
       return Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -52,6 +56,8 @@ class MonthAndYearPicker extends StatelessWidget {
             selectedDate,
             selectedDates,
             config: config,
+            onSelectionChange,
+            onRangeSelectionChange,
           )),
         ],
       );

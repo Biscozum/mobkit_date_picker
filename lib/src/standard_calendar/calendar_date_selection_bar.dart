@@ -11,7 +11,11 @@ class DateList extends StatefulWidget {
   final ValueNotifier<List<DateTime>> selectedDates;
 
   final StandardCalendarConfigModel? config;
-  const DateList(this.date, this.selectedDate, this.selectedDates, {Key? key, this.config}) : super(key: key);
+  final ValueChanged<DateTime> onSelectionChange;
+  final Function(DateTime, DateTime) onRangeSelectionChange;
+  const DateList(this.date, this.selectedDate, this.selectedDates,
+      {Key? key, this.config, required this.onSelectionChange, required this.onRangeSelectionChange})
+      : super(key: key);
 
   @override
   State<DateList> createState() => _DateListState();
@@ -22,7 +26,8 @@ class _DateListState extends State<DateList> {
   Widget build(BuildContext context) {
     return Table(
       defaultVerticalAlignment: TableCellVerticalAlignment.middle,
-      children: getDates(widget.date, widget.selectedDate, widget.config, widget.selectedDates),
+      children: getDates(widget.date, widget.selectedDate, widget.config, widget.selectedDates,
+          widget.onSelectionChange, widget.onRangeSelectionChange),
     );
   }
 
@@ -42,8 +47,13 @@ class _DateListState extends State<DateList> {
     return weekCount;
   }
 
-  List<TableRow> getDates(DateTime date, ValueNotifier<DateTime> selectedDate,
-      final StandardCalendarConfigModel? config, ValueNotifier<List<DateTime>> selectedDates) {
+  List<TableRow> getDates(
+      DateTime date,
+      ValueNotifier<DateTime> selectedDate,
+      final StandardCalendarConfigModel? config,
+      ValueNotifier<List<DateTime>> selectedDates,
+      ValueChanged<DateTime> onSelectionChange,
+      Function(DateTime, DateTime) onRangeSelectionChange) {
     List<TableRow> rowList = [];
     selectedDates.value.sort((a, b) => a.compareTo(b));
 
@@ -56,21 +66,17 @@ class _DateListState extends State<DateList> {
           cellList.add(Foo(
             index: newDate.day,
             child: DateCell(
-              newDate,
-              selectedDates.value.contains(newDate),
-              selectedDates.value.isNotEmpty
-                  ? selectedDates.value.first == newDate
-                      ? true
-                      : false
-                  : false,
-              selectedDates.value.isNotEmpty
-                  ? selectedDates.value.last == newDate
-                      ? true
-                      : false
-                  : false,
-              selectedDate,
-              config: config,
-            ),
+                newDate,
+                selectedDates.value.contains(newDate),
+                selectedDates.value.isNotEmpty
+                    ? selectedDates.value.first == newDate || selectedDates.value.last == newDate
+                        ? true
+                        : false
+                    : false,
+                selectedDate,
+                config: config,
+                onSelectionChange,
+                onRangeSelectionChange),
           ));
         } else {
           cellList.add(Container());
@@ -104,7 +110,11 @@ class DateSelectionBar extends StatefulWidget {
   final ValueNotifier<DateTime> selectedDate;
   final ValueNotifier<List<DateTime>> selectedDates;
   final StandardCalendarConfigModel? config;
-  const DateSelectionBar(this.date, this.selectedDate, this.selectedDates, {Key? key, this.config}) : super(key: key);
+  final ValueChanged<DateTime> onSelectionChange;
+  final Function(DateTime, DateTime) onRangeSelectionChange;
+  const DateSelectionBar(this.date, this.selectedDate, this.selectedDates,
+      {Key? key, this.config, required this.onSelectionChange, required this.onRangeSelectionChange})
+      : super(key: key);
 
   @override
   State<DateSelectionBar> createState() => _DateSelectionBarState();
@@ -152,8 +162,8 @@ class _DateSelectionBarState extends State<DateSelectionBar> {
     }
   }
 
-  Set<DateTime> getDaysInBeteween(DateTime startDate, DateTime endDate) {
-    Set<DateTime> days = <DateTime>{};
+  List<DateTime> getDaysInBeteween(DateTime startDate, DateTime endDate) {
+    List<DateTime> days = [];
     for (int i = 0; i <= endDate.difference(startDate).inDays; i++) {
       days.add(DateTime(startDate.year, startDate.month, startDate.day + i));
     }
@@ -171,11 +181,22 @@ class _DateSelectionBarState extends State<DateSelectionBar> {
       } else {
         if (widget.selectedDates.value.first.isBefore(index)) {
           widget.selectedDates.value.addAll(getDaysInBeteween(widget.selectedDates.value.first, index));
+          widget.onRangeSelectionChange(getDaysInBeteween(widget.selectedDates.value.first, index).first,
+              getDaysInBeteween(widget.selectedDates.value.first, index).last);
         } else if (widget.selectedDates.value.first.isAfter(index)) {
           widget.selectedDates.value.addAll(getDaysInBeteween(
             index,
             widget.selectedDates.value.first,
           ));
+          widget.onRangeSelectionChange(
+              getDaysInBeteween(
+                index,
+                widget.selectedDates.value.first,
+              ).first,
+              getDaysInBeteween(
+                index,
+                widget.selectedDates.value.first,
+              ).last);
         }
       }
     } else {
@@ -228,6 +249,8 @@ class _DateSelectionBarState extends State<DateSelectionBar> {
                           widget.selectedDates,
                           config: widget.config,
                           key: key2,
+                          onSelectionChange: widget.onSelectionChange,
+                          onRangeSelectionChange: widget.onRangeSelectionChange,
                         ),
                       );
                     });
@@ -244,6 +267,8 @@ class _DateSelectionBarState extends State<DateSelectionBar> {
                   widget.selectedDates,
                   config: widget.config,
                   key: key2,
+                  onSelectionChange: widget.onSelectionChange,
+                  onRangeSelectionChange: widget.onRangeSelectionChange,
                 );
               }),
         );
@@ -258,6 +283,8 @@ class _DateSelectionBarState extends State<DateSelectionBar> {
                   widget.selectedDates,
                   config: widget.config,
                   key: key2,
+                  onSelectionChange: widget.onSelectionChange,
+                  onRangeSelectionChange: widget.onRangeSelectionChange,
                 );
               }),
         );
@@ -273,6 +300,8 @@ class _DateSelectionBarState extends State<DateSelectionBar> {
                 widget.selectedDates,
                 config: widget.config,
                 key: key2,
+                onSelectionChange: widget.onSelectionChange,
+                onRangeSelectionChange: widget.onRangeSelectionChange,
               );
             }),
       );
