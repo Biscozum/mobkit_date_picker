@@ -28,12 +28,9 @@ extension DateTimeExtension on DateTime {
     DateTime toDateTime,
   ) {
     final date = this;
-    if (date != null) {
-      final isAfter = date.isAfterOrEqualTo(fromDateTime) ?? false;
-      final isBefore = date.isBeforeOrEqualTo(toDateTime) ?? false;
-      return isAfter && isBefore;
-    }
-    return null;
+    final isAfter = date.isAfterOrEqualTo(fromDateTime) ?? false;
+    final isBefore = date.isBeforeOrEqualTo(toDateTime) ?? false;
+    return isAfter && isBefore;
   }
 
   DateTime previous(int day) {

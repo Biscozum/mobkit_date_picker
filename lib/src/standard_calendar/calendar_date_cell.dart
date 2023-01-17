@@ -35,7 +35,7 @@ class DateCell extends StatelessWidget {
                       isEnabled: isEnabled,
                       standardCalendarConfig: config,
                       calendarType: CalendarType.standardCalendar,
-                      isCurrent: DateFormat.yMd().format(DateTime.now()) == DateFormat.yMd().format(date),
+                      isCurrent: DateFormat.yMd().format(selectedDate) == DateFormat.yMd().format(date),
                     )
                   : GestureDetector(
                       onTap: () {
@@ -50,7 +50,7 @@ class DateCell extends StatelessWidget {
                         isEnabled: isEnabled,
                         standardCalendarConfig: config,
                         calendarType: CalendarType.standardCalendar,
-                        isCurrent: DateFormat.yMd().format(DateTime.now()) == DateFormat.yMd().format(date),
+                        isCurrent: DateFormat.yMd().format(selectedDate) == DateFormat.yMd().format(date),
                       ),
                     )
               : GestureDetector(
@@ -65,7 +65,7 @@ class DateCell extends StatelessWidget {
                     isSelected: selectedDate.isSameDay(date),
                     isEnabled: isEnabled,
                     standardCalendarConfig: config,
-                    isCurrent: DateFormat.yMd().format(DateTime.now()) == DateFormat.yMd().format(date),
+                    isCurrent: DateFormat.yMd().format(selectedDate) == DateFormat.yMd().format(date),
                     calendarType: CalendarType.standardCalendar,
                   ),
                 );
