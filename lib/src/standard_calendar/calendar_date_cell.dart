@@ -10,7 +10,7 @@ class DateCell extends StatelessWidget {
   final DateTime date;
   final bool enabled;
   final ValueNotifier<DateTime> selectedDate;
-  final CalendarConfigModel? config;
+  final StandardCalendarConfigModel? config;
   final bool isSelectedNew;
   final bool isFirstSelectedItem;
   final bool isLastSelectedItem;

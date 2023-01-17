@@ -81,7 +81,7 @@ class _MyHomePageState extends State<MyHomePage> {
       DateTime.now(),
       null,
       null,
-      config: CalendarConfigModel(selectionType: type),
+      config: StandardCalendarConfigModel(selectionType: type),
     );
     return showModalBottomSheet<void>(
       isScrollControlled: true,

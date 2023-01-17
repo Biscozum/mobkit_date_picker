@@ -64,7 +64,7 @@ class _MonthListState extends State<MonthList> {
     return rowList;
   }
 
-  bool checkConfigForEnable(DateTime newDate, DateTime date, CalendarConfigModel? config) {
+  bool checkConfigForEnable(DateTime newDate, DateTime date, StandardCalendarConfigModel? config) {
     if (config == null) return false;
     if (config.disableBefore != null && date.isBefore(config.disableBefore!)) return false;
 

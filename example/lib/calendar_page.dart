@@ -12,7 +12,7 @@ class _CalendarPageState extends State<CalendarPage> {
   late StandardCalendar vidgetCalendar;
   @override
   void initState() {
-    CalendarConfigModel calendarConfigModel = CalendarConfigModel();
+    StandardCalendarConfigModel calendarConfigModel = StandardCalendarConfigModel();
     calendarConfigModel.selectionType = SelectionType.rangeTap;
     vidgetCalendar = StandardCalendar(
       DateTime.now(),

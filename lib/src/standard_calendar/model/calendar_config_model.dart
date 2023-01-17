@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class CalendarConfigModel {
+class StandardCalendarConfigModel {
   /// The title you want to appear at the top of the date picker.
   String? title;
 
@@ -81,7 +81,7 @@ class CalendarConfigModel {
 
   /// The textstyle that the selected days in the date picker will have.
   TextStyle selectedStyle;
-  CalendarConfigModel(
+  StandardCalendarConfigModel(
       {this.title,
       this.showAllDays = true,
       this.disableOffDays = true,

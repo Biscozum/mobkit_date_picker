@@ -10,7 +10,7 @@ class StandardCalendar extends StatelessWidget {
   late final ValueNotifier<DateTime> calendarDate;
   late final ValueNotifier<DateTime> selectedDate;
   late final ValueNotifier<List<DateTime>> selectedDates;
-  final CalendarConfigModel? config;
+  final StandardCalendarConfigModel? config;
 
   StandardCalendar(DateTime calendarDate, DateTime? selectedDate, List<DateTime>? selectedDates,
       {Key? key, this.config})

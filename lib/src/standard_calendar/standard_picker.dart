@@ -16,7 +16,7 @@ class StandardPicker extends StatelessWidget {
     required this.selectedDates,
   }) : super(key: key);
 
-  final CalendarConfigModel? config;
+  final StandardCalendarConfigModel? config;
   final MonthSelectionBar months;
   final ValueNotifier<DateTime> calendarDate;
   final ValueNotifier<DateTime> selectedDate;

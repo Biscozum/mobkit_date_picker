@@ -11,7 +11,7 @@ class CellWidget extends StatelessWidget {
   final bool isWeekDaysBar;
   final bool isCurrent;
   final CalendarType calendarType;
-  late final CalendarConfigModel configStandardCalendar;
+  late final StandardCalendarConfigModel configStandardCalendar;
   late final MonthAndYearConfigModel configMonthAndYear;
   CellWidget(
     this.text, {
@@ -22,12 +22,12 @@ class CellWidget extends StatelessWidget {
     this.isWeekDaysBar = false,
     this.isCurrent = false,
     this.calendarType = CalendarType.standardCalendar,
-    CalendarConfigModel? standardCalendarConfig,
+    StandardCalendarConfigModel? standardCalendarConfig,
     MonthAndYearConfigModel? monthAndYearConfig,
     Key? key,
   }) : super(key: key) {
     if (standardCalendarConfig == null) {
-      configStandardCalendar = CalendarConfigModel();
+      configStandardCalendar = StandardCalendarConfigModel();
     } else {
       configStandardCalendar = standardCalendarConfig;
     }

@@ -10,7 +10,7 @@ class DateList extends StatefulWidget {
   final ValueNotifier<DateTime> selectedDate;
   final ValueNotifier<List<DateTime>> selectedDates;
 
-  final CalendarConfigModel? config;
+  final StandardCalendarConfigModel? config;
   const DateList(this.date, this.selectedDate, this.selectedDates, {Key? key, this.config}) : super(key: key);
 
   @override
@@ -42,8 +42,8 @@ class _DateListState extends State<DateList> {
     return weekCount;
   }
 
-  List<TableRow> getDates(DateTime date, ValueNotifier<DateTime> selectedDate, final CalendarConfigModel? config,
-      ValueNotifier<List<DateTime>> selectedDates) {
+  List<TableRow> getDates(DateTime date, ValueNotifier<DateTime> selectedDate,
+      final StandardCalendarConfigModel? config, ValueNotifier<List<DateTime>> selectedDates) {
     List<TableRow> rowList = [];
     selectedDates.value.sort((a, b) => a.compareTo(b));
 
@@ -83,7 +83,7 @@ class _DateListState extends State<DateList> {
     return rowList;
   }
 
-  bool checkConfigForEnable(DateTime newDate, DateTime date, CalendarConfigModel? config) {
+  bool checkConfigForEnable(DateTime newDate, DateTime date, StandardCalendarConfigModel? config) {
     if (config == null) return false;
     if (config.disableBefore != null && date.isBefore(config.disableBefore!)) return false;
 
@@ -103,7 +103,7 @@ class DateSelectionBar extends StatefulWidget {
   final ValueNotifier<DateTime> date;
   final ValueNotifier<DateTime> selectedDate;
   final ValueNotifier<List<DateTime>> selectedDates;
-  final CalendarConfigModel? config;
+  final StandardCalendarConfigModel? config;
   const DateSelectionBar(this.date, this.selectedDate, this.selectedDates, {Key? key, this.config}) : super(key: key);
 
   @override

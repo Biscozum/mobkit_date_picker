@@ -5,7 +5,7 @@ import 'model/calendar_config_model.dart';
 
 class WeekDaysBar extends StatelessWidget {
   const WeekDaysBar({Key? key, this.config}) : super(key: key);
-  final CalendarConfigModel? config;
+  final StandardCalendarConfigModel? config;
   @override
   Widget build(BuildContext context) {
     return Row(
