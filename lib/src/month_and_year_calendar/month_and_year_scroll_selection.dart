@@ -36,7 +36,7 @@ class _MonthAndYearScrollSelectionState extends State<MonthAndYearScrollSelectio
       yearsList.add(incrementDate);
       years.add(
         Text(
-          DateFormat('yyyy').format(incrementDate),
+          DateFormat('yyyy', config.locale).format(incrementDate),
           style: const TextStyle(
             fontSize: 20,
             fontWeight: FontWeight.bold,
@@ -54,7 +54,7 @@ class _MonthAndYearScrollSelectionState extends State<MonthAndYearScrollSelectio
       monthsList.add(dateTime);
       months.add(
         Text(
-          DateFormat('MMM', 'tr').format(dateTime),
+          DateFormat('MMM', config.locale).format(dateTime),
           style: const TextStyle(
             fontSize: 20,
             fontWeight: FontWeight.bold,
@@ -113,7 +113,7 @@ class _MonthAndYearScrollSelectionState extends State<MonthAndYearScrollSelectio
             itemBuilder: (context, index) {
               DateTime dateTime = DateTime(widget.calendarDate.value.year, index + 1, 1);
               return Text(
-                DateFormat('MMM', 'tr').format(dateTime),
+                DateFormat('MMM', config.locale).format(dateTime),
                 style: const TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
@@ -139,7 +139,7 @@ class _MonthAndYearScrollSelectionState extends State<MonthAndYearScrollSelectio
               index + 1;
               DateTime incrementDate = DateTime(sDate.year + index, 1, 1);
               return Text(
-                DateFormat('yyyy').format(incrementDate),
+                DateFormat('yyyy', config.locale).format(incrementDate),
                 style: const TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.bold,

@@ -4,6 +4,9 @@ class StandardCalendarConfigModel {
   /// The title you want to appear at the top of the date picker.
   String? title;
 
+  /// It determines in which locale the date picker will work.
+  String? locale;
+
   /// Whether the date picker will show all days
   bool showAllDays;
 
@@ -83,6 +86,7 @@ class StandardCalendarConfigModel {
   TextStyle selectedStyle;
   StandardCalendarConfigModel(
       {this.title,
+      this.locale = 'tr_Tr',
       this.showAllDays = true,
       this.disableOffDays = true,
       this.disableWeekendsDays = true,

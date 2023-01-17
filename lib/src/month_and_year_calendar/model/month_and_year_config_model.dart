@@ -4,6 +4,9 @@ class MonthAndYearConfigModel {
   /// The title you want to appear at the top of the date picker.
   String? title;
 
+  /// It determines in which locale the date picker will work.
+  String? locale;
+
   /// The start date you want the date picker to start on.
   DateTime? minDate;
 
@@ -82,6 +85,7 @@ class MonthAndYearConfigModel {
   /// Config customizing your date picker
   MonthAndYearConfigModel(
       {this.title,
+      this.locale = 'tr_Tr',
       this.minDate,
       this.maxDate,
       this.showAllDays = true,

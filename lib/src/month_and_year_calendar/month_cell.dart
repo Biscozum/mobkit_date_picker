@@ -30,7 +30,7 @@ class MonthCell extends StatelessWidget {
           return config != null
               ? config!.selectionType == MonthAndYearSelectionType.selectionRange
                   ? CellWidget(
-                      DateFormat('MMMM').format(DateTime(0, date.month, 1)),
+                      DateFormat('MMMM', config!.locale).format(DateTime(0, date.month, 1)),
                       isSelected: isSelectedNew,
                       isFirstLastSelectedItem: isFirstLastSelectedItem,
                       isCurrent: DateFormat.yMd().format(DateTime.now()) == DateFormat.yMd().format(date),
@@ -44,7 +44,7 @@ class MonthCell extends StatelessWidget {
                         onSelectionChange(date);
                       },
                       child: CellWidget(
-                        DateFormat('MMMM').format(DateTime(0, date.month)),
+                        DateFormat('MMMM', config!.locale).format(DateTime(0, date.month)),
                         isSelected: selectedDate.isSameDay(date),
                         isCurrent: DateFormat.yMd().format(DateTime.now()) == DateFormat.yMd().format(date),
                         monthAndYearConfig: config,
@@ -57,7 +57,7 @@ class MonthCell extends StatelessWidget {
                     onSelectionChange(date);
                   },
                   child: CellWidget(
-                    DateFormat('MMMM').format(DateTime(0, date.month)),
+                    DateFormat('MMMM', config!.locale).format(DateTime(0, date.month)),
                     isSelected: selectedDate.isSameDay(date),
                     isCurrent: DateFormat.yMd().format(DateTime.now()) == DateFormat.yMd().format(date),
                   ),
