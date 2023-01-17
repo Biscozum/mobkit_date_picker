@@ -1,1 +1,1 @@
-enum CalendarType { standardCalendar, monthAndYearCalendar, yearCalendar }
+enum CalendarType { standardCalendar, monthAndYearCalendar }

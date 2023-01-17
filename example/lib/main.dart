@@ -36,7 +36,11 @@ class _MyHomePageState extends State<MyHomePage> {
     monthAndYearCalendar = MonthAndYearCalendar(
       selectedDate: null,
       calendarDate: DateTime.now(),
-      config: MonthAndYearConfigModel(selectionType: type, isFirstLastItemColor: Colors.pink, locale: 'fr_FR'),
+      config: MonthAndYearConfigModel(
+        selectionType: type,
+        isFirstLastItemColor: Colors.pinkAccent,
+        locale: 'fr_FR',
+      ),
       onSelectionChange: (value) {
         setState(() {
           date = value.toString();
@@ -73,7 +77,6 @@ class _MyHomePageState extends State<MyHomePage> {
       config: StandardCalendarConfigModel(
         selectionType: type,
         isFirstLastItemColor: Colors.green,
-        enabledColor: Colors.blue,
       ),
       onSelectionChange: (value) {
         setState(() {
