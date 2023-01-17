@@ -32,13 +32,14 @@ class _MyHomePageState extends State<MyHomePage> {
   MonthAndYearCalendar? monthAndYearCalendar;
   StandardCalendar? standardCalendar;
 
-  Future<void> pickDateModalMonthAndYear(
-      BuildContext context, String textIconTitleText, MonthAndYearSelectionType type) {
+  Future<void> pickDateModalMonthAndYear(BuildContext context, MonthAndYearSelectionType type) {
     monthAndYearCalendar = MonthAndYearCalendar(
-      DateTime.now(),
-      null,
-      null,
-      config: MonthAndYearConfigModel(selectionType: type, isFirstLastItemColor: Colors.pink),
+      selectedDate: null,
+      calendarDate: DateTime.now(),
+      config: MonthAndYearConfigModel(
+        selectionType: type,
+        isFirstLastItemColor: Colors.pink,
+      ),
       onSelectionChange: (value) {
         setState(() {
           date = value.toString();
@@ -68,11 +69,10 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
-  Future<void> pickDateModalStandardCalendar(BuildContext context, String textIconTitleText, SelectionType type) {
+  Future<void> pickDateModalStandardCalendar(BuildContext context, SelectionType type) {
     standardCalendar = StandardCalendar(
-      DateTime.now(),
-      null,
-      null,
+      selectedDate: null,
+      calendarDate: DateTime.now(),
       config: StandardCalendarConfigModel(
         selectionType: type,
         isFirstLastItemColor: Colors.green,
@@ -107,9 +107,9 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
-  String? firstDateStr;
-  String? lastDateStr;
-  String? date;
+  String firstDateStr = "";
+  String lastDateStr = "";
+  String date = "";
 
   @override
   Widget build(BuildContext context) {
@@ -123,7 +123,7 @@ class _MyHomePageState extends State<MyHomePage> {
           children: <Widget>[
             TextButton(
               onPressed: () {
-                pickDateModalMonthAndYear(context, "Tarih", MonthAndYearSelectionType.selectionScroll);
+                pickDateModalMonthAndYear(context, MonthAndYearSelectionType.selectionScroll);
               },
               child: const Text(
                 "MonthAndYearCalendar selectionScroll",
@@ -131,7 +131,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             TextButton(
               onPressed: () {
-                pickDateModalMonthAndYear(context, "Tarih", MonthAndYearSelectionType.selectionRange);
+                pickDateModalMonthAndYear(context, MonthAndYearSelectionType.selectionRange);
               },
               child: const Text(
                 "MonthAndYearCalendar selectionRange",
@@ -139,7 +139,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             TextButton(
               onPressed: () {
-                pickDateModalMonthAndYear(context, "Tarih", MonthAndYearSelectionType.selectionSingle);
+                pickDateModalMonthAndYear(context, MonthAndYearSelectionType.selectionSingle);
               },
               child: const Text(
                 "MonthAndYearCalendar selectionSingle",
@@ -147,7 +147,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             TextButton(
               onPressed: () {
-                pickDateModalStandardCalendar(context, "Tarih", SelectionType.rangeTap);
+                pickDateModalStandardCalendar(context, SelectionType.rangeTap);
               },
               child: const Text(
                 "StandardCalendar range tap",
@@ -155,13 +155,13 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             TextButton(
               onPressed: () {
-                pickDateModalStandardCalendar(context, "Tarih", SelectionType.singleTap);
+                pickDateModalStandardCalendar(context, SelectionType.singleTap);
               },
               child: const Text(
                 "StandardCalendar single tap",
               ),
             ),
-            const Text("Date"),
+            const Text("SelectedDate"),
             const SizedBox(
               height: 10,
             ),

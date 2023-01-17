@@ -9,7 +9,6 @@ class MonthList extends StatefulWidget {
   final DateTime date;
   final ValueNotifier<DateTime> selectedDate;
   final ValueNotifier<List<DateTime>> selectedDates;
-
   final MonthAndYearConfigModel? config;
   final ValueChanged<DateTime> onSelectionChange;
   final Function(DateTime, DateTime) onRangeSelectionChange;
@@ -88,14 +87,14 @@ class _MonthListState extends State<MonthList> {
 }
 
 class MonthAndYearBarSelection extends StatefulWidget {
-  final ValueNotifier<DateTime> date;
+  final ValueNotifier<DateTime> calendarDate;
   final ValueNotifier<DateTime> selectedDate;
   final ValueNotifier<List<DateTime>> selectedDates;
   final MonthAndYearConfigModel? config;
   final ValueChanged<DateTime> onSelectionChange;
   final Function(DateTime, DateTime) onRangeSelectionChange;
   const MonthAndYearBarSelection(
-      this.date, this.selectedDate, this.selectedDates, this.onSelectionChange, this.onRangeSelectionChange,
+      this.calendarDate, this.selectedDate, this.selectedDates, this.onSelectionChange, this.onRangeSelectionChange,
       {Key? key, this.config})
       : super(key: key);
 
@@ -125,7 +124,7 @@ class _MonthAndYearBarSelectionState extends State<MonthAndYearBarSelection> {
         final target = hit.target;
         if (target is Foo2) {
           _trackTaped.add(target);
-          DateTime date = DateTime(widget.date.value.year, target.index, widget.date.value.day);
+          DateTime date = DateTime(widget.calendarDate.value.year, target.index, widget.calendarDate.value.day);
           _selectRange(date);
         }
       }
@@ -182,15 +181,15 @@ class _MonthAndYearBarSelectionState extends State<MonthAndYearBarSelection> {
       if (widget.config!.selectionType == MonthAndYearSelectionType.selectionRange) {
         return SizedBox(
           child: ValueListenableBuilder(
-              valueListenable: widget.date,
-              builder: (_, DateTime date, __) {
+              valueListenable: widget.calendarDate,
+              builder: (_, DateTime calendarDate, __) {
                 return ValueListenableBuilder(
                     valueListenable: widget.selectedDates,
                     builder: (_, List<DateTime> dates, __) {
                       return Listener(
                         onPointerHover: dateRangeTapItem,
                         child: MonthList(
-                          date,
+                          calendarDate,
                           widget.selectedDate,
                           widget.selectedDates,
                           config: widget.config,
@@ -205,10 +204,10 @@ class _MonthAndYearBarSelectionState extends State<MonthAndYearBarSelection> {
       } else {
         return SizedBox(
           child: ValueListenableBuilder(
-              valueListenable: widget.date,
-              builder: (_, DateTime date, __) {
+              valueListenable: widget.calendarDate,
+              builder: (_, DateTime calendarDate, __) {
                 return MonthList(
-                  date,
+                  calendarDate,
                   widget.selectedDate,
                   widget.selectedDates,
                   config: widget.config,
@@ -222,10 +221,10 @@ class _MonthAndYearBarSelectionState extends State<MonthAndYearBarSelection> {
     } else {
       return SizedBox(
         child: ValueListenableBuilder(
-            valueListenable: widget.date,
-            builder: (_, DateTime date, __) {
+            valueListenable: widget.calendarDate,
+            builder: (_, DateTime calendarDate, __) {
               return MonthList(
-                date,
+                calendarDate,
                 widget.selectedDate,
                 widget.selectedDates,
                 config: widget.config,

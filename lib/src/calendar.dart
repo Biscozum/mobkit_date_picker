@@ -7,29 +7,34 @@ import 'month_and_year_calendar/model/month_and_year_config_model.dart';
 import 'month_and_year_calendar/month_and_year_picker.dart';
 
 class StandardCalendar extends StatelessWidget {
-  late final ValueNotifier<DateTime> calendarDate;
-  late final ValueNotifier<DateTime> selectedDate;
-  late final ValueNotifier<List<DateTime>> selectedDates;
+  final DateTime calendarDate;
+  late final DateTime selectDate;
+  final ValueNotifier<List<DateTime>> selectedDates = ValueNotifier<List<DateTime>>(List<DateTime>.from([]));
   final StandardCalendarConfigModel? config;
   final ValueChanged<DateTime> onSelectionChange;
   final Function(DateTime firstDate, DateTime lastDate) onRangeSelectionChange;
-  StandardCalendar(DateTime calendarDate, DateTime? selectedDate, List<DateTime>? selectedDates,
-      {Key? key, this.config, required this.onSelectionChange, required this.onRangeSelectionChange})
-      : super(key: key) {
-    this.calendarDate = ValueNotifier<DateTime>(calendarDate);
-    this.selectedDate = ValueNotifier<DateTime>(selectedDate ?? DateTime.now());
-    this.selectedDates = ValueNotifier<List<DateTime>>(selectedDates ?? List<DateTime>.from([]));
+  StandardCalendar({
+    DateTime? selectedDate,
+    Key? key,
+    this.config,
+    required this.onSelectionChange,
+    required this.onRangeSelectionChange,
+    required this.calendarDate,
+  }) : super(key: key) {
+    selectDate = selectedDate ?? DateTime.now();
   }
 
   @override
   Widget build(BuildContext context) {
     initializeDateFormatting();
-    var months = MonthSelectionBar(calendarDate);
+    ValueNotifier<DateTime> widgetCalendarDate = ValueNotifier<DateTime>(calendarDate);
+    ValueNotifier<DateTime> widgetSelectedDate = ValueNotifier<DateTime>(selectDate);
+    var months = MonthSelectionBar(widgetCalendarDate);
     return StandardPicker(
       config: config,
       months: months,
-      calendarDate: calendarDate,
-      selectedDate: selectedDate,
+      calendarDate: widgetCalendarDate,
+      selectedDate: widgetSelectedDate,
       selectedDates: selectedDates,
       onSelectionChange: onSelectionChange,
       onRangeSelectionChange: onRangeSelectionChange,
@@ -38,29 +43,34 @@ class StandardCalendar extends StatelessWidget {
 }
 
 class MonthAndYearCalendar extends StatelessWidget {
-  late final ValueNotifier<DateTime> calendarDate;
+  final DateTime calendarDate;
+  late final DateTime selectDate;
   final MonthAndYearConfigModel? config;
   final ValueChanged<DateTime> onSelectionChange;
   final Function(DateTime firstDate, DateTime lastDate) onRangeSelectionChange;
-  late final ValueNotifier<DateTime> selectedDate;
-  late final ValueNotifier<List<DateTime>> selectedDates;
-  MonthAndYearCalendar(DateTime calendarDate, DateTime? selectedDate, List<DateTime>? selectedDates,
-      {Key? key, this.config, required this.onSelectionChange, required this.onRangeSelectionChange})
-      : super(key: key) {
-    this.calendarDate = ValueNotifier<DateTime>(calendarDate);
-    this.selectedDate = ValueNotifier<DateTime>(selectedDate ?? DateTime.now());
-    this.selectedDates = ValueNotifier<List<DateTime>>(selectedDates ?? List<DateTime>.from([]));
+  late final ValueNotifier<List<DateTime>> selectedDates = ValueNotifier<List<DateTime>>(List<DateTime>.from([]));
+  MonthAndYearCalendar({
+    DateTime? selectedDate,
+    Key? key,
+    this.config,
+    required this.onSelectionChange,
+    required this.onRangeSelectionChange,
+    required this.calendarDate,
+  }) : super(key: key) {
+    selectDate = selectedDate ?? DateTime.now();
   }
 
   @override
   Widget build(BuildContext context) {
     initializeDateFormatting();
+    ValueNotifier<DateTime> widgetCalendarDate = ValueNotifier<DateTime>(calendarDate);
+    ValueNotifier<DateTime> widgetSelectedDate = ValueNotifier<DateTime>(selectDate);
     return MonthAndYearPicker(
         monthAndYearConfigModel: config,
         onSelectionChange: onSelectionChange,
         onRangeSelectionChange: onRangeSelectionChange,
-        calendarDate: calendarDate,
-        selectedDate: selectedDate,
+        calendarDate: widgetCalendarDate,
+        selectedDate: widgetSelectedDate,
         selectedDates: selectedDates);
   }
 }

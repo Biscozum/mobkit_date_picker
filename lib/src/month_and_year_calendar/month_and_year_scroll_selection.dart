@@ -107,6 +107,7 @@ class _MonthAndYearScrollSelectionState extends State<MonthAndYearScrollSelectio
             itemExtent: config.itemExtent,
             onSelectedItemChanged: (value) {
               widget.calendarDate.value = DateTime(widget.calendarDate.value.year, monthsList[value].month, 1);
+              widget.onSelectionChange(DateTime(widget.calendarDate.value.year, monthsList[value].month, 1));
             },
             childCount: 12,
             itemBuilder: (context, index) {
