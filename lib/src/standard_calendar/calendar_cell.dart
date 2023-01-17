@@ -83,7 +83,7 @@ class CellWidget extends StatelessWidget {
                         ? configStandardCalendar.selectedColor
                         : isSelected
                             ? configStandardCalendar.selectedColor.withOpacity(
-                                configStandardCalendar.dateSelectType == SelectionType.rangeTap ? 0.70 : 1.0)
+                                configStandardCalendar.selectionType == SelectionType.rangeTap ? 0.70 : 1.0)
                             : configStandardCalendar.enabledColor
                     : configStandardCalendar.disabledColor,
                 border: isWeekDaysBar

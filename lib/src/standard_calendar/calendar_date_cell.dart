@@ -26,7 +26,7 @@ class DateCell extends StatelessWidget {
         valueListenable: selectedDate,
         builder: (context, DateTime selectedDate, widget) {
           return config != null
-              ? config!.dateSelectType == SelectionType.rangeTap
+              ? config!.selectionType == SelectionType.rangeTap
                   ? CellWidget(
                       date.day.toString(),
                       isSelected: isSelectedNew,

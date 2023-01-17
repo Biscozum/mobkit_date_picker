@@ -57,10 +57,7 @@ class _MyHomePageState extends State<MyHomePage> {
       DateTime.now(),
       null,
       null,
-      config: MonthAndYearConfigModel(
-        dividerColor: Colors.red,
-        selectionType: type,
-      ),
+      config: MonthAndYearConfigModel(selectionType: type),
     );
     return showModalBottomSheet<void>(
       isScrollControlled: true,
@@ -84,7 +81,7 @@ class _MyHomePageState extends State<MyHomePage> {
       DateTime.now(),
       null,
       null,
-      config: CalendarConfigModel(dateSelectType: type),
+      config: CalendarConfigModel(selectionType: type),
     );
     return showModalBottomSheet<void>(
       isScrollControlled: true,

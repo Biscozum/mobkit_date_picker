@@ -51,26 +51,16 @@ class StandardPicker extends StatelessWidget {
           const SizedBox(
             height: 10,
           ),
-          GestureDetector(
-            // onHorizontalDragEnd: (details) {
-            //   double sensitivity = 200;
-            //   if (details.primaryVelocity != null && details.primaryVelocity! > sensitivity) {
-            //     months.goPreviousMonth();
-            //   } else if (details.primaryVelocity != null && details.primaryVelocity! < -sensitivity) {
-            //     months.goNextMonth();
-            //   }
-            // },
-            child: SizedBox(
-                height: 290,
-                child: Container(
-                    color: Colors.transparent,
-                    child: DateSelectionBar(
-                      calendarDate,
-                      selectedDate,
-                      selectedDates,
-                      config: config,
-                    ))),
-          ),
+          SizedBox(
+              height: 290,
+              child: Container(
+                  color: Colors.transparent,
+                  child: DateSelectionBar(
+                    calendarDate,
+                    selectedDate,
+                    selectedDates,
+                    config: config,
+                  ))),
         ],
       ),
     );
