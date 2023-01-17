@@ -1,46 +1,95 @@
 import 'package:flutter/material.dart';
 
 class CalendarConfigModel {
+  /// The title you want to appear at the top of the date picker.
   String? title;
+
+  /// Whether the date picker will show all days
   bool showAllDays;
+
+  /// Turns off all dates of the date picker
   bool disableOffDays;
+
+  /// Whether to show the bar showing the days of the week above the date picker
   bool disableWeekendsDays;
-  int firstDayIs;
-  SelectionType dateSelectType;
+
+  /// Specifies the date picker type of the date picker.
+  SelectionType selectionType;
+
+  /// Specifies what type of date the date picker will select.
   PickerType pickerType = PickerType.standard;
+
+  /// The date picker closes before the specified date.
   DateTime? disableBefore;
+
+  /// The date picker closes after the specified date.
   DateTime? disableAfter;
+
+  /// Specifies which types the date picker will turn off.
   List<DateTime>? disabledDates;
-  TextStyle? dateStyle;
+
+  /// Space inside the cells of the date picker
   EdgeInsetsGeometry itemSpace;
+
+  /// Animation Duration
   Duration animationDuration;
+
+  /// The color that the active days of the date picker will have
   Color enabledColor;
+
+  /// The color that the inactive days of the date picker will have
   Color disabledColor;
+
+  /// The color that the selected days of the date picker will have
   Color selectedColor;
+
+  /// If you are selecting a range with your date picker, the color of the first and last element of the range
   Color isFirstLastItemColor;
+
+  /// The main theme color of your date picker
   Color primaryColor;
+
+  /// The color of the borders of the active days of the date picker
   Color enabledBorderColor;
+
+  /// The color of the borders of the inactive days of the date picker
   Color disabledBorderColor;
+
+  /// The color of the borders of the selected days of the date picker
   Color selectedBorderColor;
+
+  /// The width of the date picker's borders.
   double borderWidth;
+
+  /// If non-null, the corners of this box are rounded.
   BorderRadiusGeometry borderRadius;
+
+  /// The textstyle that the active days of the date picker will have
   TextStyle enableStyle;
+
+  /// The textstyle that the days of the month will have in the date picker.
   TextStyle monthDaysStyle;
+
+  /// The textstyle that the days of the week will have in the date picker
   TextStyle weekDaysStyle;
+
+  /// The textstyle that the inactive days of the date picker will have
   TextStyle disabledStyle;
+
+  /// The textstyle that today's date will have
   TextStyle currentStyle;
+
+  /// The textstyle that the selected days in the date picker will have.
   TextStyle selectedStyle;
   CalendarConfigModel(
       {this.title,
       this.showAllDays = true,
       this.disableOffDays = true,
       this.disableWeekendsDays = true,
-      this.firstDayIs = DateTime.wednesday,
-      this.dateSelectType = SelectionType.singleTap,
+      this.selectionType = SelectionType.singleTap,
       this.disableBefore,
       this.disableAfter,
       this.disabledDates,
-      this.dateStyle,
       this.itemSpace = const EdgeInsets.all(2.0),
       this.animationDuration = const Duration(milliseconds: 300),
       this.enabledColor = Colors.transparent,
@@ -63,7 +112,7 @@ class CalendarConfigModel {
 
 enum SelectionType { rangeTap, singleTap }
 
-enum PickerType { day, month, monthAndYear, standard }
+enum PickerType { month, monthAndYear, standard }
 
 // class DateCellStyleModel {
 //   Duration animationDuration;

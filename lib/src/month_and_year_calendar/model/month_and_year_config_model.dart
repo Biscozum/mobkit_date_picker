@@ -1,25 +1,85 @@
 import 'package:flutter/material.dart';
 
 class MonthAndYearConfigModel {
+  /// The title you want to appear at the top of the date picker.
   String? title;
+
+  /// The start date you want the date picker to start on.
   DateTime? minDate;
+
+  /// The end date you want the date picker to end on.
   DateTime? maxDate;
+
+  /// Whether the date picker will show all days
   bool showAllDays;
+
+  /// Turns off all dates of the date picker
   bool disableOffDays;
+
+  /// Whether to show the bar showing the days of the week above the date picker
   bool disableWeekendsDays;
+
+  /// Space inside the cells of the date picker
   EdgeInsetsGeometry itemSpace;
+
+  /// Animation Duration
   Duration animationDuration;
+
+  /// The color that the active days of the date picker will have
   Color enabledColor;
+
+  /// The color that the inactive days of the date picker will have
   Color disabledColor;
+
+  /// The color that the selected days of the date picker will have
   Color selectedColor;
+
+  /// If you are selecting a range with your date picker, the color of the first and last element of the range
   Color isFirstLastItemColor;
+
+  /// The main theme color of your date picker
   Color primaryColor;
-  Color dividerColor;
+
+  /// The color of the borders of the active days of the date picker
+  Color enabledBorderColor;
+
+  /// The color of the borders of the inactive days of the date picker
+  Color disabledBorderColor;
+
+  /// The color of the borders of the selected days of the date picker
+  Color selectedBorderColor;
+
+  /// The width of the date picker's borders.
+  double borderWidth;
+
+  /// The uniform height of all children.
+  double itemExtent;
+
+  /// If non-null, the corners of this box are rounded.
   BorderRadiusGeometry borderRadius;
+
+  /// The textstyle that the active days of the date picker will have
   TextStyle enableStyle;
+
+  /// The textstyle that the days of the month will have in the date picker.
+  TextStyle monthDaysStyle;
+
+  /// The textstyle that the days of the week will have in the date picker
+  TextStyle weekDaysStyle;
+
+  /// The textstyle that the inactive days of the date picker will have
   TextStyle disabledStyle;
+
+  /// The textstyle that today's date will have
   TextStyle currentStyle;
+
+  /// The textstyle that the selected days in the date picker will have.
+  TextStyle selectedStyle;
+
+  /// Specifies the date picker type of the date picker.
   MonthAndYearSelectionType selectionType;
+
+  /// Config customizing your date picker
   MonthAndYearConfigModel(
       {this.title,
       this.minDate,
@@ -30,40 +90,23 @@ class MonthAndYearConfigModel {
       this.itemSpace = const EdgeInsets.all(2.0),
       this.animationDuration = const Duration(milliseconds: 300),
       this.enabledColor = Colors.transparent,
+      this.enabledBorderColor = Colors.transparent,
+      this.disabledBorderColor = const Color.fromARGB(255, 127, 127, 127),
+      this.selectedBorderColor = Colors.black,
+      this.borderWidth = 1,
+      this.itemExtent = 25,
       this.disabledColor = const Color.fromARGB(255, 127, 127, 127),
       this.selectedColor = const Color.fromRGBO(253, 165, 46, 1),
       this.isFirstLastItemColor = const Color.fromARGB(255, 236, 10, 10),
       this.primaryColor = const Color.fromRGBO(253, 165, 46, 1),
-      this.dividerColor = Colors.black,
       this.borderRadius = const BorderRadius.all(Radius.circular(4)),
       this.enableStyle = const TextStyle(fontWeight: FontWeight.bold),
+      this.monthDaysStyle = const TextStyle(fontWeight: FontWeight.normal),
+      this.weekDaysStyle = const TextStyle(color: Color.fromRGBO(253, 165, 46, 1), fontWeight: FontWeight.bold),
       this.disabledStyle = const TextStyle(color: Color.fromARGB(255, 127, 127, 127), fontWeight: FontWeight.bold),
       this.currentStyle = const TextStyle(color: Color.fromRGBO(253, 165, 46, 1), fontWeight: FontWeight.bold),
+      this.selectedStyle = const TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
       this.selectionType = MonthAndYearSelectionType.selectionSingle});
 }
 
 enum MonthAndYearSelectionType { selectionScroll, selectionSingle, selectionRange }
-
-// class StyleModel {
-//   Duration animationDuration;
-//   Color disabledColor;
-//   Color selectedColor;
-//   Color isFirstLastItemColor;
-//   Color primaryColor;
-//   Color dividerColor;
-//   BorderRadiusGeometry borderRadius;
-//   TextStyle? enableStyle;
-//   TextStyle? disabledStyle;
-
-//   StyleModel({
-//     this.animationDuration = const Duration(milliseconds: 300),
-//     this.disabledColor = const Color.fromARGB(255, 127, 127, 127),
-//     this.selectedColor = const Color.fromRGBO(253, 165, 46, 1),
-//     this.isFirstLastItemColor = const Color.fromARGB(255, 236, 10, 10),
-//     this.primaryColor = const Color.fromRGBO(253, 165, 46, 1),
-//     this.dividerColor = Colors.black,
-//     this.borderRadius = const BorderRadius.all(Radius.circular(4)),
-//     this.enableStyle = const TextStyle(fontWeight: FontWeight.bold),
-//     this.disabledStyle = const TextStyle(color: Color.fromARGB(255, 127, 127, 127), fontWeight: FontWeight.bold),
-//   });
-// }

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mobkit_date_picker/src/standard_calendar/model/calendar_config_model.dart';
 import 'package:mobkit_date_picker/src/standard_calendar/calendar_month_selection_bar.dart';
-import 'package:mobkit_date_picker/src/standard_picker.dart';
+import 'package:mobkit_date_picker/src/standard_calendar/standard_picker.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'month_and_year_calendar/model/month_and_year_config_model.dart';
 import 'month_and_year_calendar/month_and_year_picker.dart';

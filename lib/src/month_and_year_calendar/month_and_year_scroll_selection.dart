@@ -102,7 +102,7 @@ class _MonthAndYearScrollSelectionState extends State<MonthAndYearScrollSelectio
           child: CupertinoPicker.builder(
             scrollController: fixedMonthController,
             backgroundColor: Colors.transparent,
-            itemExtent: 30,
+            itemExtent: config.itemExtent,
             onSelectedItemChanged: (value) {
               widget.calendarDate.value = DateTime(widget.calendarDate.value.year, monthsList[value].month, 1);
             },
@@ -124,7 +124,7 @@ class _MonthAndYearScrollSelectionState extends State<MonthAndYearScrollSelectio
           child: CupertinoPicker.builder(
             scrollController: fixedYearController,
             backgroundColor: Colors.transparent,
-            itemExtent: 30,
+            itemExtent: config.itemExtent,
             onSelectedItemChanged: (value) {
               widget.calendarDate.value =
                   DateTime(yearsList[value].year, widget.calendarDate.value.month, widget.calendarDate.value.day);

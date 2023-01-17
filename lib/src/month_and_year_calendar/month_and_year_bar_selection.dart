@@ -34,7 +34,7 @@ class _MonthListState extends State<MonthList> {
     for (var i = 1; i <= 4; i++) {
       List<Widget> months = [];
       for (int x = 1; x <= 3; x++) {
-        DateTime dateTime = DateTime(DateTime.now().year, newDate.month, 1);
+        DateTime dateTime = DateTime(newDate.year, newDate.month, 1);
         months.add(
           Foo(
             index: dateTime.month,
