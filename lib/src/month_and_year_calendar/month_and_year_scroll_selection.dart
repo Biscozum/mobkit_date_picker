@@ -1,7 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-
 import '../../mobkit_date_picker.dart';
 
 class MonthAndYearScrollSelection extends StatefulWidget {
@@ -103,7 +101,9 @@ class _MonthAndYearScrollSelectionState extends State<MonthAndYearScrollSelectio
           flex: 2,
           child: CupertinoPicker.builder(
             scrollController: fixedMonthController,
-            backgroundColor: Colors.transparent,
+            selectionOverlay: CupertinoPickerDefaultSelectionOverlay(
+              background: config.selectedColor.withOpacity(0.5),
+            ),
             itemExtent: config.itemExtent,
             onSelectedItemChanged: (value) {
               widget.calendarDate.value = DateTime(widget.calendarDate.value.year, monthsList[value].month, 1);
@@ -126,7 +126,9 @@ class _MonthAndYearScrollSelectionState extends State<MonthAndYearScrollSelectio
           flex: 2,
           child: CupertinoPicker.builder(
             scrollController: fixedYearController,
-            backgroundColor: Colors.transparent,
+            selectionOverlay: CupertinoPickerDefaultSelectionOverlay(
+              background: config.selectedColor.withOpacity(0.5),
+            ),
             itemExtent: config.itemExtent,
             onSelectedItemChanged: (value) {
               widget.calendarDate.value =

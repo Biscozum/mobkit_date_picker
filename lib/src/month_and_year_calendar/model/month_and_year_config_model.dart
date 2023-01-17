@@ -82,35 +82,40 @@ class MonthAndYearConfigModel {
   /// Specifies the date picker type of the date picker.
   MonthAndYearSelectionType selectionType;
 
+  /// Container decoration
+  BoxDecoration? boxDecoration;
+
   /// Config customizing your date picker
-  MonthAndYearConfigModel(
-      {this.title,
-      this.locale = 'tr_Tr',
-      this.minDate,
-      this.maxDate,
-      this.showAllDays = true,
-      this.disableOffDays = true,
-      this.disableWeekendsDays = true,
-      this.itemSpace = const EdgeInsets.all(2.0),
-      this.animationDuration = const Duration(milliseconds: 300),
-      this.enabledColor = Colors.transparent,
-      this.enabledBorderColor = Colors.transparent,
-      this.disabledBorderColor = const Color.fromARGB(255, 127, 127, 127),
-      this.selectedBorderColor = Colors.black,
-      this.borderWidth = 1,
-      this.itemExtent = 25,
-      this.disabledColor = const Color.fromARGB(255, 127, 127, 127),
-      this.selectedColor = const Color.fromRGBO(253, 165, 46, 1),
-      this.isFirstLastItemColor = const Color.fromARGB(255, 236, 10, 10),
-      this.primaryColor = const Color.fromRGBO(253, 165, 46, 1),
-      this.borderRadius = const BorderRadius.all(Radius.circular(4)),
-      this.enableStyle = const TextStyle(fontWeight: FontWeight.bold),
-      this.monthDaysStyle = const TextStyle(fontWeight: FontWeight.normal),
-      this.weekDaysStyle = const TextStyle(color: Color.fromRGBO(253, 165, 46, 1), fontWeight: FontWeight.bold),
-      this.disabledStyle = const TextStyle(color: Color.fromARGB(255, 127, 127, 127), fontWeight: FontWeight.bold),
-      this.currentStyle = const TextStyle(color: Color.fromRGBO(253, 165, 46, 1), fontWeight: FontWeight.bold),
-      this.selectedStyle = const TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-      this.selectionType = MonthAndYearSelectionType.selectionSingle});
+  MonthAndYearConfigModel({
+    this.title,
+    this.locale = 'tr_Tr',
+    this.minDate,
+    this.maxDate,
+    this.showAllDays = true,
+    this.disableOffDays = true,
+    this.disableWeekendsDays = true,
+    this.itemSpace = const EdgeInsets.all(2.0),
+    this.animationDuration = const Duration(milliseconds: 300),
+    this.enabledColor = Colors.transparent,
+    this.enabledBorderColor = Colors.transparent,
+    this.disabledBorderColor = const Color.fromARGB(255, 127, 127, 127),
+    this.selectedBorderColor = Colors.black,
+    this.borderWidth = 1,
+    this.itemExtent = 25,
+    this.disabledColor = const Color.fromARGB(255, 127, 127, 127),
+    this.selectedColor = const Color.fromRGBO(253, 165, 46, 1),
+    this.isFirstLastItemColor = const Color.fromARGB(255, 236, 10, 10),
+    this.primaryColor = const Color.fromRGBO(253, 165, 46, 1),
+    this.borderRadius = const BorderRadius.all(Radius.circular(4)),
+    this.enableStyle = const TextStyle(fontWeight: FontWeight.bold),
+    this.monthDaysStyle = const TextStyle(fontWeight: FontWeight.normal),
+    this.weekDaysStyle = const TextStyle(color: Color.fromRGBO(253, 165, 46, 1), fontWeight: FontWeight.bold),
+    this.disabledStyle = const TextStyle(color: Color.fromARGB(255, 127, 127, 127), fontWeight: FontWeight.bold),
+    this.currentStyle = const TextStyle(color: Color.fromRGBO(253, 165, 46, 1), fontWeight: FontWeight.bold),
+    this.selectedStyle = const TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+    this.selectionType = MonthAndYearSelectionType.selectionSingle,
+    this.boxDecoration,
+  });
 }
 
 enum MonthAndYearSelectionType { selectionScroll, selectionSingle, selectionRange }

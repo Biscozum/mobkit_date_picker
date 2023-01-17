@@ -76,18 +76,19 @@ class CellWidget extends StatelessWidget {
           child: AnimatedContainer(
             duration: configStandardCalendar.animationDuration,
             decoration: BoxDecoration(
-                color: isEnabled
-                    ? isFirstLastSelectedItem
-                        ? configStandardCalendar.isFirstLastItemColor
-                        : isSelected
-                            ? configStandardCalendar.selectedColor.withOpacity(
-                                configStandardCalendar.selectionType == SelectionType.rangeTap ? 0.70 : 1.0)
-                            : configStandardCalendar.enabledColor
-                    : configStandardCalendar.disabledColor,
-                border: isWeekDaysBar
-                    ? Border.all(width: configStandardCalendar.borderWidth, color: configStandardCalendar.primaryColor)
-                    : null,
-                borderRadius: configStandardCalendar.borderRadius),
+              color: isEnabled
+                  ? isFirstLastSelectedItem
+                      ? configStandardCalendar.isFirstLastItemColor
+                      : isSelected
+                          ? configStandardCalendar.selectedColor
+                              .withOpacity(configStandardCalendar.selectionType == SelectionType.rangeTap ? 0.70 : 1.0)
+                          : configStandardCalendar.enabledColor
+                  : configStandardCalendar.disabledColor,
+              border: isWeekDaysBar
+                  ? Border.all(width: configStandardCalendar.borderWidth, color: configStandardCalendar.primaryColor)
+                  : null,
+              borderRadius: configStandardCalendar.borderRadius,
+            ),
             child: Center(
               child: Text(
                 text,
