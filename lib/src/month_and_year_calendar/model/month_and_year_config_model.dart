@@ -80,7 +80,7 @@ class MonthAndYearConfigModel {
   TextStyle selectedStyle;
 
   /// Specifies the date picker type of the date picker.
-  MonthAndYearSelectionType selectionType;
+  MonthAndYearCalendarSelectionType selectionType;
 
   /// Container decoration
   BoxDecoration? boxDecoration;
@@ -113,9 +113,9 @@ class MonthAndYearConfigModel {
     this.disabledStyle = const TextStyle(color: Color.fromARGB(255, 127, 127, 127), fontWeight: FontWeight.bold),
     this.currentStyle = const TextStyle(color: Color.fromRGBO(253, 165, 46, 1), fontWeight: FontWeight.bold),
     this.selectedStyle = const TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-    this.selectionType = MonthAndYearSelectionType.selectionSingle,
+    this.selectionType = MonthAndYearCalendarSelectionType.selectionSingle,
     this.boxDecoration,
   });
 }
 
-enum MonthAndYearSelectionType { selectionScroll, selectionSingle, selectionRange }
+enum MonthAndYearCalendarSelectionType { selectionScroll, selectionSingle, selectionRange }

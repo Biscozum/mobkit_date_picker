@@ -50,7 +50,9 @@ class CellWidget extends StatelessWidget {
                     ? configMonthAndYear.isFirstLastItemColor
                     : isSelected
                         ? configMonthAndYear.selectedColor.withOpacity(
-                            configMonthAndYear.selectionType == MonthAndYearSelectionType.selectionRange ? 0.70 : 1.0)
+                            configMonthAndYear.selectionType == MonthAndYearCalendarSelectionType.selectionRange
+                                ? 0.70
+                                : 1.0)
                         : configMonthAndYear.enabledColor,
                 border: isWeekDaysBar ? Border.all(width: 1, color: configMonthAndYear.primaryColor) : null,
                 borderRadius: configMonthAndYear.borderRadius),
@@ -80,8 +82,10 @@ class CellWidget extends StatelessWidget {
                   ? isFirstLastSelectedItem
                       ? configStandardCalendar.isFirstLastItemColor
                       : isSelected
-                          ? configStandardCalendar.selectedColor
-                              .withOpacity(configStandardCalendar.selectionType == SelectionType.rangeTap ? 0.70 : 1.0)
+                          ? configStandardCalendar.selectedColor.withOpacity(
+                              configStandardCalendar.selectionType == StandardCalendarSelectionType.rangeTap
+                                  ? 0.70
+                                  : 1.0)
                           : configStandardCalendar.enabledColor
                   : configStandardCalendar.disabledColor,
               border: isWeekDaysBar
@@ -107,45 +111,5 @@ class CellWidget extends StatelessWidget {
         ),
       );
     }
-    // return Padding(
-    //   padding: config.itemSpace,
-    //   child: SizedBox(
-    //     height: 40,
-    //     width: MediaQuery.of(context).size.width * 0.12,
-    //     child: AnimatedContainer(
-    //       duration: config.cellStyle.animationDuration,
-    //       decoration: BoxDecoration(
-    //           color: isEnabled
-    //               ? isFirstSelectedItem || isLastSelectedItem
-    //                   ? config.cellStyle.selectedColor
-    //                   : isSelected
-    //                       ? config.cellStyle.selectedColor.withOpacity(
-    //                           config.dateSelectType == SelectionType.rangeTap ||
-    //                                   config.dateSelectType == SelectionType.rangeSwipe
-    //                               ? 0.70
-    //                               : 1.0)
-    //                       : config.cellStyle.enabledColor
-    //               : config.cellStyle.disabledColor,
-    //           border: Border.all(
-    //               width: config.cellStyle.borderWidth,
-    //               color: isEnabled
-    //                   ? isSelected
-    //                       ? config.cellStyle.selectedBorderColor.withOpacity(0.70)
-    //                       : config.cellStyle.enabledBorderColor
-    //                   : config.cellStyle.disabledBorderColor),
-    //           borderRadius: config.cellStyle.borderRadius),
-    //       child: Center(
-    //         child: Text(
-    //           text,
-    //           style: isEnabled
-    //               ? isSelected
-    //                   ? config.cellStyle.selectedStyle
-    //                   : config.cellStyle.enableStyle
-    //               : config.cellStyle.disabledStyle,
-    //         ),
-    //       ),
-    //     ),
-    //   ),
-    // );
   }
 }

@@ -178,7 +178,7 @@ class _MonthAndYearBarSelectionState extends State<MonthAndYearBarSelection> {
   @override
   Widget build(BuildContext context) {
     if (widget.config != null) {
-      if (widget.config!.selectionType == MonthAndYearSelectionType.selectionRange) {
+      if (widget.config!.selectionType == MonthAndYearCalendarSelectionType.selectionRange) {
         return SizedBox(
           child: ValueListenableBuilder(
               valueListenable: widget.calendarDate,

@@ -28,7 +28,7 @@ class MonthCell extends StatelessWidget {
         valueListenable: selectedDate,
         builder: (context, DateTime selectedDate, widget) {
           return config != null
-              ? config!.selectionType == MonthAndYearSelectionType.selectionRange
+              ? config!.selectionType == MonthAndYearCalendarSelectionType.selectionRange
                   ? CellWidget(
                       DateFormat('MMMM', config!.locale).format(DateTime(0, date.month, 1)),
                       isSelected: isSelectedNew,

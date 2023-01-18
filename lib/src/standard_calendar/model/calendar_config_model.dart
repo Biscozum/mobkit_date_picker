@@ -17,7 +17,7 @@ class StandardCalendarConfigModel {
   bool disableWeekendsDays;
 
   /// Specifies the date picker type of the date picker.
-  SelectionType selectionType;
+  StandardCalendarSelectionType selectionType;
 
   /// Specifies what type of date the date picker will select.
   PickerType pickerType = PickerType.standard;
@@ -90,7 +90,7 @@ class StandardCalendarConfigModel {
       this.showAllDays = true,
       this.disableOffDays = true,
       this.disableWeekendsDays = true,
-      this.selectionType = SelectionType.singleTap,
+      this.selectionType = StandardCalendarSelectionType.singleTap,
       this.disableBefore,
       this.disableAfter,
       this.disabledDates,
@@ -114,7 +114,7 @@ class StandardCalendarConfigModel {
       this.selectedStyle = const TextStyle(color: Colors.white, fontWeight: FontWeight.bold)});
 }
 
-enum SelectionType { rangeTap, singleTap }
+enum StandardCalendarSelectionType { rangeTap, singleTap }
 
 enum PickerType { month, monthAndYear, standard }
 

@@ -31,7 +31,7 @@ class MonthAndYearPicker extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (config.selectionType == MonthAndYearSelectionType.selectionScroll) {
+    if (config.selectionType == MonthAndYearCalendarSelectionType.selectionScroll) {
       return MonthAndYearScrollSelection(calendarDate, config, onSelectionChange);
     } else {
       return Column(

@@ -233,7 +233,7 @@ class _DateSelectionBarState extends State<DateSelectionBar> {
   @override
   Widget build(BuildContext context) {
     if (widget.config != null) {
-      if (widget.config!.selectionType == SelectionType.rangeTap) {
+      if (widget.config!.selectionType == StandardCalendarSelectionType.rangeTap) {
         return SizedBox(
           child: ValueListenableBuilder(
               valueListenable: widget.date,
@@ -256,7 +256,7 @@ class _DateSelectionBarState extends State<DateSelectionBar> {
                     });
               }),
         );
-      } else if (widget.config!.selectionType == SelectionType.singleTap) {
+      } else if (widget.config!.selectionType == StandardCalendarSelectionType.singleTap) {
         return SizedBox(
           child: ValueListenableBuilder(
               valueListenable: widget.date,

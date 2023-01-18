@@ -32,14 +32,13 @@ class _MyHomePageState extends State<MyHomePage> {
   MonthAndYearCalendar? monthAndYearCalendar;
   StandardCalendar? standardCalendar;
 
-  Future<void> pickDateModalMonthAndYear(BuildContext context, MonthAndYearSelectionType type) {
+  Future<void> pickDateModalMonthAndYear(BuildContext context, MonthAndYearCalendarSelectionType type) {
     monthAndYearCalendar = MonthAndYearCalendar(
       selectedDate: null,
       calendarDate: DateTime.now(),
       config: MonthAndYearConfigModel(
         selectionType: type,
-        isFirstLastItemColor: Colors.pinkAccent,
-        locale: 'fr_FR',
+        locale: 'en_EN',
       ),
       onSelectionChange: (value) {
         setState(() {
@@ -70,14 +69,11 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
-  Future<void> pickDateModalStandardCalendar(BuildContext context, SelectionType type) {
+  Future<void> pickDateModalStandardCalendar(BuildContext context, StandardCalendarSelectionType type) {
     standardCalendar = StandardCalendar(
       selectedDate: null,
       calendarDate: DateTime.now(),
-      config: StandardCalendarConfigModel(
-        selectionType: type,
-        isFirstLastItemColor: Colors.green,
-      ),
+      config: StandardCalendarConfigModel(selectionType: type, locale: 'en_EN'),
       onSelectionChange: (value) {
         setState(() {
           date = value.toString();
@@ -123,7 +119,7 @@ class _MyHomePageState extends State<MyHomePage> {
           children: <Widget>[
             TextButton(
               onPressed: () {
-                pickDateModalMonthAndYear(context, MonthAndYearSelectionType.selectionScroll);
+                pickDateModalMonthAndYear(context, MonthAndYearCalendarSelectionType.selectionScroll);
               },
               child: const Text(
                 "MonthAndYearCalendar selectionScroll",
@@ -131,7 +127,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             TextButton(
               onPressed: () {
-                pickDateModalMonthAndYear(context, MonthAndYearSelectionType.selectionRange);
+                pickDateModalMonthAndYear(context, MonthAndYearCalendarSelectionType.selectionRange);
               },
               child: const Text(
                 "MonthAndYearCalendar selectionRange",
@@ -139,7 +135,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             TextButton(
               onPressed: () {
-                pickDateModalMonthAndYear(context, MonthAndYearSelectionType.selectionSingle);
+                pickDateModalMonthAndYear(context, MonthAndYearCalendarSelectionType.selectionSingle);
               },
               child: const Text(
                 "MonthAndYearCalendar selectionSingle",
@@ -147,7 +143,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             TextButton(
               onPressed: () {
-                pickDateModalStandardCalendar(context, SelectionType.rangeTap);
+                pickDateModalStandardCalendar(context, StandardCalendarSelectionType.rangeTap);
               },
               child: const Text(
                 "StandardCalendar range tap",
@@ -155,7 +151,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             TextButton(
               onPressed: () {
-                pickDateModalStandardCalendar(context, SelectionType.singleTap);
+                pickDateModalStandardCalendar(context, StandardCalendarSelectionType.singleTap);
               },
               child: const Text(
                 "StandardCalendar single tap",
