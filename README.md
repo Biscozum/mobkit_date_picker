@@ -128,62 +128,38 @@ If you want the user to select more than one date, you can get the first and las
 ##### Change Different Views
 
 *   StandardCalendarConfigModel
+
     * `String? title` - The title you want to appear at the top of the date picker.
-
     * `String? locale` - It determines in which locale the date picker will work.
-
     * `bool showAllDays` - Whether the date picker will show all days
-
     * `bool disableOffDays` - Turns off all dates of the date picker
-
     * `bool disableWeekendsDays` - Whether to show the bar showing the days of the week above the date picker
-
     * `StandardCalendarSelectionType selectionType` - Specifies the date picker type of the date picker.
-
     * `PickerType pickerType` - Specifies what type of date the date picker will select.
-
     * `DateTime? disableBefore` - The date picker closes before the specified date.
-
     * `DateTime? disableAfter` - The date picker closes after the specified date.
-
     * `List<DateTime>? disabledDates` - Specifies which types the date picker will turn off.
-
     * `EdgeInsetsGeometry itemSpace` - Space inside the cells of the date picker
-
     * `Duration animationDuration` - Animation Duration
-
     * `Color enabledColor` - The color that the active days of the date picker will have
-
     * `Color disabledColor` - The color that the inactive days of the date picker will have
-
     * `Color selectedColor` - The color that the selected days of the date picker will have
-
     * `Color isFirstLastItemColor` - If you are selecting a range with your date picker, the color of the first and last element of the range
-
     * `Color primaryColor` - The main theme color of your date picker
-
     * `Color enabledBorderColor` - The color of the borders of the active days of the date picker
-
     * `Color disabledBorderColor` - The color of the borders of the inactive days of the date picker
-
     * `Color selectedBorderColor` - The color of the borders of the selected days of the date picker
-
     * `double borderWidth` - The width of the date picker's borders.
-
     * `BorderRadiusGeometry borderRadius` - If non-null, the corners of this box are rounded.
-
     * `TextStyle enableStyle` - The textstyle that the active days of the date picker will have
-
     * `TextStyle monthDaysStyle` - The textstyle that the days of the month will have in the date picker.
-
     * `TextStyle weekDaysStyle` - The textstyle that the days of the week will have in the date picker
-
     * `TextStyle disabledStyle` - The textstyle that the inactive days of the date picker will have
-
     * `TextStyle currentStyle` - The textstyle that today's date will have
-
     * `TextStyle selectedStyle` - The textstyle that the selected days in the date picker will have.
+
 *   MonthAndYearConfigModel
+
     * `String? locale` - It determines in which locale the date picker will work.   
     * `DateTime? minDate` - The start date you want the date picker to start on.
     * `DateTime? maxDate` - The end date you want the date picker to end on.
