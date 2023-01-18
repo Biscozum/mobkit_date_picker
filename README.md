@@ -210,20 +210,3 @@ If you want the user to select more than one date, you can get the first and las
     * `TextStyle currentStyle` - The textstyle that today's date will have
     * `TextStyle selectedStyle` - The textstyle that the selected days in the date picker will have.
     * `MonthAndYearCalendarSelectionType selectionType` - Specifies the date picker type of the date picker.
-
-
-
-## Usage
-
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder. 
-
-```dart
-const like = 'sample';
-```
-
-## Additional information
-
-TODO: Tell users more about the package: where to find more information, how to 
-contribute to the package, how to file issues, what response they can expect 
-from the package authors, and more.
