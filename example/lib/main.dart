@@ -29,14 +29,14 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  MonthAndYearCalendar? monthAndYearCalendar;
-  StandardCalendar? standardCalendar;
+  MobkitMonthAndYearCalendar? monthAndYearCalendar;
+  MobkitCalendar? calendar;
 
-  Future<void> pickDateModalMonthAndYear(BuildContext context, MonthAndYearCalendarSelectionType type) {
-    monthAndYearCalendar = MonthAndYearCalendar(
+  Future<void> pickDateModalMonthAndYear(BuildContext context, MobkitMonthAndYearCalendarSelectionType type) {
+    monthAndYearCalendar = MobkitMonthAndYearCalendar(
       selectedDate: null,
       calendarDate: DateTime.now(),
-      config: MonthAndYearConfigModel(
+      config: MobkitMonthAndYearCalendarConfigModel(
         selectionType: type,
         locale: 'en_EN',
       ),
@@ -69,11 +69,11 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
-  Future<void> pickDateModalStandardCalendar(BuildContext context, StandardCalendarSelectionType type) {
-    standardCalendar = StandardCalendar(
+  Future<void> pickDateModalCalendar(BuildContext context, MobkitCalendarSelectionType type) {
+    calendar = MobkitCalendar(
       selectedDate: null,
       calendarDate: DateTime.now(),
-      config: StandardCalendarConfigModel(selectionType: type, locale: 'en_EN'),
+      config: MobkitCalendarConfigModel(selectionType: type, locale: 'en_EN'),
       onSelectionChange: (value) {
         setState(() {
           date = value.toString();
@@ -97,7 +97,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 color: Colors.white,
                 borderRadius: BorderRadius.only(topLeft: Radius.circular(20.0), topRight: Radius.circular(20.0))),
             child: SizedBox(
-              child: standardCalendar,
+              child: calendar,
             ));
       },
     );
@@ -119,7 +119,7 @@ class _MyHomePageState extends State<MyHomePage> {
           children: <Widget>[
             TextButton(
               onPressed: () {
-                pickDateModalMonthAndYear(context, MonthAndYearCalendarSelectionType.selectionScroll);
+                pickDateModalMonthAndYear(context, MobkitMonthAndYearCalendarSelectionType.selectionScroll);
               },
               child: const Text(
                 "MonthAndYearCalendar selectionScroll",
@@ -127,7 +127,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             TextButton(
               onPressed: () {
-                pickDateModalMonthAndYear(context, MonthAndYearCalendarSelectionType.selectionRange);
+                pickDateModalMonthAndYear(context, MobkitMonthAndYearCalendarSelectionType.selectionRange);
               },
               child: const Text(
                 "MonthAndYearCalendar selectionRange",
@@ -135,7 +135,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             TextButton(
               onPressed: () {
-                pickDateModalMonthAndYear(context, MonthAndYearCalendarSelectionType.selectionSingle);
+                pickDateModalMonthAndYear(context, MobkitMonthAndYearCalendarSelectionType.selectionSingle);
               },
               child: const Text(
                 "MonthAndYearCalendar selectionSingle",
@@ -143,18 +143,18 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             TextButton(
               onPressed: () {
-                pickDateModalStandardCalendar(context, StandardCalendarSelectionType.rangeTap);
+                pickDateModalCalendar(context, MobkitCalendarSelectionType.rangeTap);
               },
               child: const Text(
-                "StandardCalendar range tap",
+                "Calendar range tap",
               ),
             ),
             TextButton(
               onPressed: () {
-                pickDateModalStandardCalendar(context, StandardCalendarSelectionType.singleTap);
+                pickDateModalCalendar(context, MobkitCalendarSelectionType.singleTap);
               },
               child: const Text(
-                "StandardCalendar single tap",
+                "Calendar single tap",
               ),
             ),
             const Text("SelectedDate"),

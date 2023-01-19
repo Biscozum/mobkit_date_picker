@@ -11,7 +11,7 @@ class MonthCell extends StatelessWidget {
   final bool enabled;
   final ValueNotifier<DateTime> selectedDate;
   final ValueNotifier<List<DateTime>> selectedDates;
-  final MonthAndYearConfigModel? config;
+  final MobkitMonthAndYearCalendarConfigModel? config;
   final bool isSelectedNew;
   final bool isFirstLastSelectedItem;
   final ValueChanged<DateTime> onSelectionChange;
@@ -28,7 +28,7 @@ class MonthCell extends StatelessWidget {
         valueListenable: selectedDate,
         builder: (context, DateTime selectedDate, widget) {
           return config != null
-              ? config!.selectionType == MonthAndYearCalendarSelectionType.selectionRange
+              ? config!.selectionType == MobkitMonthAndYearCalendarSelectionType.selectionRange
                   ? CellWidget(
                       DateFormat('MMMM', config!.locale).format(DateTime(0, date.month, 1)),
                       isSelected: isSelectedNew,

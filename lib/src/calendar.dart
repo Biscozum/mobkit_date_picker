@@ -6,14 +6,14 @@ import 'package:intl/date_symbol_data_local.dart';
 import 'month_and_year_calendar/model/month_and_year_config_model.dart';
 import 'month_and_year_calendar/month_and_year_picker.dart';
 
-class StandardCalendar extends StatelessWidget {
+class MobkitCalendar extends StatelessWidget {
   final DateTime calendarDate;
   late final DateTime selectDate;
   final ValueNotifier<List<DateTime>> selectedDates = ValueNotifier<List<DateTime>>(List<DateTime>.from([]));
-  final StandardCalendarConfigModel? config;
+  final MobkitCalendarConfigModel? config;
   final ValueChanged<DateTime> onSelectionChange;
   final Function(DateTime firstDate, DateTime lastDate) onRangeSelectionChange;
-  StandardCalendar({
+  MobkitCalendar({
     DateTime? selectedDate,
     Key? key,
     this.config,
@@ -42,14 +42,14 @@ class StandardCalendar extends StatelessWidget {
   }
 }
 
-class MonthAndYearCalendar extends StatelessWidget {
+class MobkitMonthAndYearCalendar extends StatelessWidget {
   final DateTime calendarDate;
   late final DateTime selectDate;
-  final MonthAndYearConfigModel? config;
+  final MobkitMonthAndYearCalendarConfigModel? config;
   final ValueChanged<DateTime> onSelectionChange;
   final Function(DateTime firstDate, DateTime lastDate) onRangeSelectionChange;
   late final ValueNotifier<List<DateTime>> selectedDates = ValueNotifier<List<DateTime>>(List<DateTime>.from([]));
-  MonthAndYearCalendar({
+  MobkitMonthAndYearCalendar({
     DateTime? selectedDate,
     Key? key,
     this.config,

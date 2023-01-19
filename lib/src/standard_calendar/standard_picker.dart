@@ -18,7 +18,7 @@ class StandardPicker extends StatelessWidget {
     required this.onRangeSelectionChange,
   }) : super(key: key);
 
-  final StandardCalendarConfigModel? config;
+  final MobkitCalendarConfigModel? config;
   final MonthSelectionBar months;
   final ValueNotifier<DateTime> calendarDate;
   final ValueNotifier<DateTime> selectedDate;

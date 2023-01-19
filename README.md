@@ -29,21 +29,21 @@ import 'package:mobkit_date_picker/mobkit_date_picker.dart';
 ```
 ##### Mobkit Date Picker Types
 
-The `MobkitDatePicker` widget provides two different types of views to display. With `StandardCalendar` you can have a standard date picker view, just use `MonthAndYearCalendar` for month and year selection
+The `MobkitDatePicker` widget provides two different types of views to display. With `MobkitCalendar` you can have a standard date picker view, just use `MobkitMonthAndYearCalendar` for month and year selection
 
 
 ##### Add mobkit date picker to the widget tree.
 
-Add the `StandardCalendar / MonthAndYearCalendar` widget as a child of any widget. Here, widget is added as a child of the scaffold widget.
+Add the `MobkitCalendar / MobkitMonthAndYearCalendar` widget as a child of any widget. Here, widget is added as a child of the scaffold widget.
 
 
-`StandardCalendar`
+`MobkitCalendar`
 ```dart
 @override
 Widget build(BuildContext context) {
   return Scaffold(
       body: Container(
-    child: StandardCalendar(
+    child: Calendar(
       calendarDate: DateTime.now(),
       onSelectionChange: (value) {},
       onRangeSelectionChange: (firstDate, lastDate) {},
@@ -52,13 +52,13 @@ Widget build(BuildContext context) {
 }
 ```
 
-`MonthAndYearCalendar`
+`MobkitMonthAndYearCalendar`
 ```dart
 @override
 Widget build(BuildContext context) {
   return Scaffold(
       body: Container(
-    child: MonthAndYearCalendar(
+    child: MobkitMonthAndYearCalendar(
       calendarDate: DateTime.now(),
       onSelectionChange: (value) {},
       onRangeSelectionChange: (firstDate, lastDate) {},
@@ -67,12 +67,12 @@ Widget build(BuildContext context) {
 }
 ```
 
-##### StandardCalendar
+##### MobkitCalendar
 
-`StandardCalendar` gives a standard view of selecting dates. You can use `StandardCalendar` if you want the user to select a single date or a date range with multiple recipes.
+`MobkitCalendar` gives a standard view of selecting dates. You can use `MobkitCalendar` if you want the user to select a single date or a date range with multiple recipes.
 
-You can customize your date picker with `StandardCalendarConfigModel`.
-##### StandardCalendarSelectionType
+You can customize your date picker with `MobkitCalendarConfigModel`.
+##### MobkitCalendarSelectionType
 You must decide whether you want the user to have a single date or a range of dates with multiple dates.
 * `rangeTap`
 rangeTap expects the user to select a date range with multiple dates. When the user clicks on two different dates, the dates between the two clicked dates are returned.
@@ -84,12 +84,12 @@ singleTap expects the user to select a single date. When the user clicks on any 
 
 
 
-##### MonthAndYearCalendar
-MonthAndYearCalendar provides a view that allows the user to select month and year. You can use MonthAndYearCalendar if you want the user to select a date range that includes a single month or multiple months.
+##### MobkitMonthAndYearCalendar
+MobkitMonthAndYearCalendar provides a view that allows the user to select month and year. You can use MobkitMonthAndYearCalendar if you want the user to select a date range that includes a single month or multiple months.
 
-You can customize your date picker with `MonthAndYearCalendarConfigModel`.
+You can customize your date picker with `MobkitMonthAndYearCalendarConfigModel`.
 
-##### MonthAndYearCalendarSelectionType
+##### MobkitMonthAndYearCalendarSelectionType
 You must decide whether you want the user to have a single date or a range of dates with multiple dates.
 * `selectionScroll`
 selectionScroll allows the user to select a single month and year. The user can select the month and year by swiping his finger up and down.
@@ -127,14 +127,14 @@ If you want the user to select more than one date, you can get the first and las
 
 ##### Change Different Views
 
-*   StandardCalendarConfigModel
+*   MobkitCalendarConfigModel
 
     * `String? title` - The title you want to appear at the top of the date picker.
     * `String? locale` - It determines in which locale the date picker will work.
     * `bool showAllDays` - Whether the date picker will show all days
     * `bool disableOffDays` - Turns off all dates of the date picker
     * `bool disableWeekendsDays` - Whether to show the bar showing the days of the week above the date picker
-    * `StandardCalendarSelectionType selectionType` - Specifies the date picker type of the date picker.
+    * `MobkitCalendarSelectionType selectionType` - Specifies the date picker type of the date picker.
     * `PickerType pickerType` - Specifies what type of date the date picker will select.
     * `DateTime? disableBefore` - The date picker closes before the specified date.
     * `DateTime? disableAfter` - The date picker closes after the specified date.
@@ -166,6 +166,9 @@ If you want the user to select more than one date, you can get the first and las
     * `bool showAllDays` - Whether the date picker will show all days
     * `bool disableOffDays` - Turns off all dates of the date picker
     * `bool disableWeekendsDays` - Whether to show the bar showing the days of the week above the date
+    * `DateTime? disableBefore` - The date picker closes before the specified date.
+    * `DateTime? disableAfter` - The date picker closes after the specified date.
+    * `List<DateTime>? disabledDates` - Specifies which types the date picker will turn off.
     * `EdgeInsetsGeometry itemSpace` - Space inside the cells of the date picker
     * `Duration animationDuration` - Animation Duration
     * `Color enabledColor` - The color that the active days of the date picker will have
@@ -185,4 +188,4 @@ If you want the user to select more than one date, you can get the first and las
     * `TextStyle disabledStyle` - The textstyle that the inactive days of the date picker will have
     * `TextStyle currentStyle` - The textstyle that today's date will have
     * `TextStyle selectedStyle` - The textstyle that the selected days in the date picker will have.
-    * `MonthAndYearCalendarSelectionType selectionType` - Specifies the date picker type of the date picker.
+    * `MobkitMonthAndYearCalendarSelectionType selectionType` - Specifies the date picker type of the date picker.

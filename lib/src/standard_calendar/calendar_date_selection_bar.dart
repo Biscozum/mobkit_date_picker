@@ -10,7 +10,7 @@ class DateList extends StatefulWidget {
   final ValueNotifier<DateTime> selectedDate;
   final ValueNotifier<List<DateTime>> selectedDates;
 
-  final StandardCalendarConfigModel? config;
+  final MobkitCalendarConfigModel? config;
   final ValueChanged<DateTime> onSelectionChange;
   final Function(DateTime, DateTime) onRangeSelectionChange;
   const DateList(this.date, this.selectedDate, this.selectedDates,
@@ -50,7 +50,7 @@ class _DateListState extends State<DateList> {
   List<TableRow> getDates(
       DateTime date,
       ValueNotifier<DateTime> selectedDate,
-      final StandardCalendarConfigModel? config,
+      final MobkitCalendarConfigModel? config,
       ValueNotifier<List<DateTime>> selectedDates,
       ValueChanged<DateTime> onSelectionChange,
       Function(DateTime, DateTime) onRangeSelectionChange) {
@@ -89,7 +89,7 @@ class _DateListState extends State<DateList> {
     return rowList;
   }
 
-  bool checkConfigForEnable(DateTime newDate, DateTime date, StandardCalendarConfigModel? config) {
+  bool checkConfigForEnable(DateTime newDate, DateTime date, MobkitCalendarConfigModel? config) {
     if (config == null) return false;
     if (config.disableBefore != null && date.isBefore(config.disableBefore!)) return false;
 
@@ -109,7 +109,7 @@ class DateSelectionBar extends StatefulWidget {
   final ValueNotifier<DateTime> date;
   final ValueNotifier<DateTime> selectedDate;
   final ValueNotifier<List<DateTime>> selectedDates;
-  final StandardCalendarConfigModel? config;
+  final MobkitCalendarConfigModel? config;
   final ValueChanged<DateTime> onSelectionChange;
   final Function(DateTime, DateTime) onRangeSelectionChange;
   const DateSelectionBar(this.date, this.selectedDate, this.selectedDates,
@@ -233,7 +233,7 @@ class _DateSelectionBarState extends State<DateSelectionBar> {
   @override
   Widget build(BuildContext context) {
     if (widget.config != null) {
-      if (widget.config!.selectionType == StandardCalendarSelectionType.rangeTap) {
+      if (widget.config!.selectionType == MobkitCalendarSelectionType.rangeTap) {
         return SizedBox(
           child: ValueListenableBuilder(
               valueListenable: widget.date,
@@ -256,7 +256,7 @@ class _DateSelectionBarState extends State<DateSelectionBar> {
                     });
               }),
         );
-      } else if (widget.config!.selectionType == StandardCalendarSelectionType.singleTap) {
+      } else if (widget.config!.selectionType == MobkitCalendarSelectionType.singleTap) {
         return SizedBox(
           child: ValueListenableBuilder(
               valueListenable: widget.date,

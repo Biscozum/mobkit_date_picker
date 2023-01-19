@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class MonthAndYearConfigModel {
+class MobkitMonthAndYearCalendarConfigModel {
   /// The title you want to appear at the top of the date picker.
   String? title;
 
@@ -21,6 +21,15 @@ class MonthAndYearConfigModel {
 
   /// Whether to show the bar showing the days of the week above the date picker
   bool disableWeekendsDays;
+
+  /// The date picker closes before the specified date.
+  DateTime? disableBefore;
+
+  /// The date picker closes after the specified date.
+  DateTime? disableAfter;
+
+  /// Specifies which types the date picker will turn off.
+  List<DateTime>? disabledDates;
 
   /// Space inside the cells of the date picker
   EdgeInsetsGeometry itemSpace;
@@ -80,13 +89,13 @@ class MonthAndYearConfigModel {
   TextStyle selectedStyle;
 
   /// Specifies the date picker type of the date picker.
-  MonthAndYearCalendarSelectionType selectionType;
+  MobkitMonthAndYearCalendarSelectionType selectionType;
 
   /// Container decoration
   BoxDecoration? boxDecoration;
 
   /// Config customizing your date picker
-  MonthAndYearConfigModel({
+  MobkitMonthAndYearCalendarConfigModel({
     this.title,
     this.locale = 'tr_Tr',
     this.minDate,
@@ -94,6 +103,9 @@ class MonthAndYearConfigModel {
     this.showAllDays = true,
     this.disableOffDays = true,
     this.disableWeekendsDays = true,
+    this.disableBefore,
+    this.disableAfter,
+    this.disabledDates,
     this.itemSpace = const EdgeInsets.all(2.0),
     this.animationDuration = const Duration(milliseconds: 300),
     this.enabledColor = Colors.transparent,
@@ -113,9 +125,9 @@ class MonthAndYearConfigModel {
     this.disabledStyle = const TextStyle(color: Color.fromARGB(255, 127, 127, 127), fontWeight: FontWeight.bold),
     this.currentStyle = const TextStyle(color: Color.fromRGBO(253, 165, 46, 1), fontWeight: FontWeight.bold),
     this.selectedStyle = const TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-    this.selectionType = MonthAndYearCalendarSelectionType.selectionSingle,
+    this.selectionType = MobkitMonthAndYearCalendarSelectionType.selectionSingle,
     this.boxDecoration,
   });
 }
 
-enum MonthAndYearCalendarSelectionType { selectionScroll, selectionSingle, selectionRange }
+enum MobkitMonthAndYearCalendarSelectionType { selectionScroll, selectionSingle, selectionRange }

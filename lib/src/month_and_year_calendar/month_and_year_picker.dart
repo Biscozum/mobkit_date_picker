@@ -6,8 +6,8 @@ import 'month_and_year_scroll_selection.dart';
 import 'model/month_and_year_config_model.dart';
 
 class MonthAndYearPicker extends StatelessWidget {
-  late final MonthAndYearConfigModel config;
-  final MonthAndYearConfigModel? monthAndYearConfigModel;
+  late final MobkitMonthAndYearCalendarConfigModel config;
+  final MobkitMonthAndYearCalendarConfigModel? monthAndYearConfigModel;
   final ValueNotifier<DateTime> calendarDate;
   final ValueNotifier<DateTime> selectedDate;
   final ValueNotifier<List<DateTime>> selectedDates;
@@ -23,7 +23,7 @@ class MonthAndYearPicker extends StatelessWidget {
     required this.onRangeSelectionChange,
   }) : super(key: key) {
     if (monthAndYearConfigModel == null) {
-      config = MonthAndYearConfigModel();
+      config = MobkitMonthAndYearCalendarConfigModel();
     } else {
       config = monthAndYearConfigModel!;
     }
@@ -31,7 +31,7 @@ class MonthAndYearPicker extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (config.selectionType == MonthAndYearCalendarSelectionType.selectionScroll) {
+    if (config.selectionType == MobkitMonthAndYearCalendarSelectionType.selectionScroll) {
       return MonthAndYearScrollSelection(calendarDate, config, onSelectionChange);
     } else {
       return Column(

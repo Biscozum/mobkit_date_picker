@@ -10,7 +10,7 @@ class DateCell extends StatelessWidget {
   final DateTime date;
   final bool enabled;
   final ValueNotifier<DateTime> selectedDate;
-  final StandardCalendarConfigModel? config;
+  final MobkitCalendarConfigModel? config;
   final bool isSelectedNew;
   final bool isFirstLastSelectedItem;
   final ValueChanged<DateTime> onSelectionChange;
@@ -27,7 +27,7 @@ class DateCell extends StatelessWidget {
         valueListenable: selectedDate,
         builder: (context, DateTime selectedDate, widget) {
           return config != null
-              ? config!.selectionType == StandardCalendarSelectionType.rangeTap
+              ? config!.selectionType == MobkitCalendarSelectionType.rangeTap
                   ? CellWidget(
                       date.day.toString(),
                       isSelected: isSelectedNew,

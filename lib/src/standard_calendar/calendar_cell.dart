@@ -10,8 +10,8 @@ class CellWidget extends StatelessWidget {
   final bool isWeekDaysBar;
   final bool isCurrent;
   final CalendarType calendarType;
-  late final StandardCalendarConfigModel configStandardCalendar;
-  late final MonthAndYearConfigModel configMonthAndYear;
+  late final MobkitCalendarConfigModel configStandardCalendar;
+  late final MobkitMonthAndYearCalendarConfigModel configMonthAndYear;
   CellWidget(
     this.text, {
     this.isSelected = false,
@@ -20,17 +20,17 @@ class CellWidget extends StatelessWidget {
     this.isWeekDaysBar = false,
     this.isCurrent = false,
     this.calendarType = CalendarType.standardCalendar,
-    StandardCalendarConfigModel? standardCalendarConfig,
-    MonthAndYearConfigModel? monthAndYearConfig,
+    MobkitCalendarConfigModel? standardCalendarConfig,
+    MobkitMonthAndYearCalendarConfigModel? monthAndYearConfig,
     Key? key,
   }) : super(key: key) {
     if (standardCalendarConfig == null) {
-      configStandardCalendar = StandardCalendarConfigModel();
+      configStandardCalendar = MobkitCalendarConfigModel();
     } else {
       configStandardCalendar = standardCalendarConfig;
     }
     if (monthAndYearConfig == null) {
-      configMonthAndYear = MonthAndYearConfigModel();
+      configMonthAndYear = MobkitMonthAndYearCalendarConfigModel();
     } else {
       configMonthAndYear = monthAndYearConfig;
     }
@@ -50,7 +50,7 @@ class CellWidget extends StatelessWidget {
                     ? configMonthAndYear.isFirstLastItemColor
                     : isSelected
                         ? configMonthAndYear.selectedColor.withOpacity(
-                            configMonthAndYear.selectionType == MonthAndYearCalendarSelectionType.selectionRange
+                            configMonthAndYear.selectionType == MobkitMonthAndYearCalendarSelectionType.selectionRange
                                 ? 0.70
                                 : 1.0)
                         : configMonthAndYear.enabledColor,
@@ -83,9 +83,7 @@ class CellWidget extends StatelessWidget {
                       ? configStandardCalendar.isFirstLastItemColor
                       : isSelected
                           ? configStandardCalendar.selectedColor.withOpacity(
-                              configStandardCalendar.selectionType == StandardCalendarSelectionType.rangeTap
-                                  ? 0.70
-                                  : 1.0)
+                              configStandardCalendar.selectionType == MobkitCalendarSelectionType.rangeTap ? 0.70 : 1.0)
                           : configStandardCalendar.enabledColor
                   : configStandardCalendar.disabledColor,
               border: isWeekDaysBar

@@ -9,7 +9,7 @@ class MonthList extends StatefulWidget {
   final DateTime date;
   final ValueNotifier<DateTime> selectedDate;
   final ValueNotifier<List<DateTime>> selectedDates;
-  final MonthAndYearConfigModel? config;
+  final MobkitMonthAndYearCalendarConfigModel? config;
   final ValueChanged<DateTime> onSelectionChange;
   final Function(DateTime, DateTime) onRangeSelectionChange;
   const MonthList(this.date, this.selectedDate, this.selectedDates,
@@ -33,7 +33,7 @@ class _MonthListState extends State<MonthList> {
   List<TableRow> generateMonths(
       DateTime date,
       ValueNotifier<DateTime> selectedDate,
-      final MonthAndYearConfigModel? config,
+      final MobkitMonthAndYearCalendarConfigModel? config,
       ValueNotifier<List<DateTime>> selectedDates,
       ValueChanged<DateTime> onSelectionChange,
       Function(DateTime, DateTime) onRangeSelectionChange) {
@@ -70,7 +70,7 @@ class _MonthListState extends State<MonthList> {
     return rowList;
   }
 
-  bool checkConfigForEnable(DateTime newDate, DateTime date, StandardCalendarConfigModel? config) {
+  bool checkConfigForEnable(DateTime newDate, DateTime date, MobkitMonthAndYearCalendarConfigModel? config) {
     if (config == null) return false;
     if (config.disableBefore != null && date.isBefore(config.disableBefore!)) return false;
 
@@ -90,7 +90,7 @@ class MonthAndYearBarSelection extends StatefulWidget {
   final ValueNotifier<DateTime> calendarDate;
   final ValueNotifier<DateTime> selectedDate;
   final ValueNotifier<List<DateTime>> selectedDates;
-  final MonthAndYearConfigModel? config;
+  final MobkitMonthAndYearCalendarConfigModel? config;
   final ValueChanged<DateTime> onSelectionChange;
   final Function(DateTime, DateTime) onRangeSelectionChange;
   const MonthAndYearBarSelection(
@@ -178,7 +178,7 @@ class _MonthAndYearBarSelectionState extends State<MonthAndYearBarSelection> {
   @override
   Widget build(BuildContext context) {
     if (widget.config != null) {
-      if (widget.config!.selectionType == MonthAndYearCalendarSelectionType.selectionRange) {
+      if (widget.config!.selectionType == MobkitMonthAndYearCalendarSelectionType.selectionRange) {
         return SizedBox(
           child: ValueListenableBuilder(
               valueListenable: widget.calendarDate,
