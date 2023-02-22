@@ -46,16 +46,22 @@ class CellWidget extends StatelessWidget {
           child: AnimatedContainer(
             duration: configMonthAndYear.animationDuration,
             decoration: BoxDecoration(
-                color: isFirstLastSelectedItem
-                    ? configMonthAndYear.isFirstLastItemColor
-                    : isSelected
-                        ? configMonthAndYear.selectedColor.withOpacity(
-                            configMonthAndYear.selectionType == MobkitMonthAndYearCalendarSelectionType.selectionRange
-                                ? 0.70
-                                : 1.0)
-                        : configMonthAndYear.enabledColor,
-                border: isWeekDaysBar ? Border.all(width: 1, color: configMonthAndYear.primaryColor) : null,
-                borderRadius: configMonthAndYear.borderRadius),
+              color: isFirstLastSelectedItem
+                  ? configMonthAndYear.isFirstLastItemColor
+                  : isSelected
+                      ? configMonthAndYear.selectedColor.withOpacity(
+                          configMonthAndYear.selectionType == MobkitMonthAndYearCalendarSelectionType.selectionRange
+                              ? 0.70
+                              : 1.0)
+                      : configMonthAndYear.enabledColor,
+              border: isWeekDaysBar
+                  ? Border.all(width: 1, color: configMonthAndYear.primaryColor)
+                  : Border.all(
+                      width: configMonthAndYear.borderWidth,
+                      color: isSelected
+                          ? configStandardCalendar.selectedBorderColor
+                          : configStandardCalendar.enabledBorderColor),
+            ),
             child: Center(
               child: Text(
                 text,
@@ -88,7 +94,11 @@ class CellWidget extends StatelessWidget {
                   : configStandardCalendar.disabledColor,
               border: isWeekDaysBar
                   ? Border.all(width: configStandardCalendar.borderWidth, color: configStandardCalendar.primaryColor)
-                  : null,
+                  : Border.all(
+                      width: configStandardCalendar.borderWidth,
+                      color: isSelected
+                          ? configStandardCalendar.selectedBorderColor
+                          : configStandardCalendar.enabledBorderColor),
               borderRadius: configStandardCalendar.borderRadius,
             ),
             child: Center(
