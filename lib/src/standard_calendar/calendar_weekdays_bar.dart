@@ -14,6 +14,7 @@ class WeekDaysBar extends StatelessWidget {
           .map((e) => CellWidget(
                 e,
                 isWeekDaysBar: true,
+                standardCalendarConfig: config,
               ))
           .toList(),
     );
