@@ -62,21 +62,23 @@ class _DateListState extends State<DateList> {
     for (var i = 0; i < calculateMonth(date); i++) {
       List<Widget> cellList = [];
       for (var x = 1; x <= 7; x++) {
-        if (newDate.month == date.month && config != null) {
+        if (config != null) {
           cellList.add(Foo(
             index: newDate.day,
             child: DateCell(
-                newDate,
-                selectedDates.value.contains(newDate),
-                selectedDates.value.isNotEmpty
-                    ? selectedDates.value.first == newDate || selectedDates.value.last == newDate
-                        ? true
-                        : false
-                    : false,
-                selectedDate,
-                config: config,
-                onSelectionChange,
-                onRangeSelectionChange),
+              newDate,
+              selectedDates.value.contains(newDate),
+              selectedDates.value.isNotEmpty
+                  ? selectedDates.value.first == newDate || selectedDates.value.last == newDate
+                      ? true
+                      : false
+                  : false,
+              selectedDate,
+              config: config,
+              onSelectionChange,
+              onRangeSelectionChange,
+              enabled: checkConfigForEnable(newDate, date, config),
+            ),
           ));
         } else {
           cellList.add(Container());
@@ -100,8 +102,8 @@ class _DateListState extends State<DateList> {
       return false;
     }
     if (newDate.isWeekend() && !config.disableWeekendsDays) return true;
-    if (newDate.month != date.month && !config.disableOffDays) return true;
-    return false;
+    if (newDate.month != date.month && config.disableOffDays) return false;
+    return true;
   }
 }
 
