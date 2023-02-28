@@ -82,6 +82,8 @@ class MobkitCalendarConfigModel {
   /// The textstyle that today's date will have
   TextStyle currentStyle;
 
+  Color weekDaysBarBorderColor;
+
   /// The textstyle that the selected days in the date picker will have.
   TextStyle selectedStyle;
   MobkitCalendarConfigModel(
@@ -101,6 +103,7 @@ class MobkitCalendarConfigModel {
       this.selectedColor = const Color.fromRGBO(253, 165, 46, 1),
       this.isFirstLastItemColor = const Color.fromARGB(255, 236, 10, 10),
       this.primaryColor = const Color.fromRGBO(253, 165, 46, 1),
+      this.weekDaysBarBorderColor = const Color.fromRGBO(253, 165, 46, 1),
       this.enabledBorderColor = Colors.transparent,
       this.disabledBorderColor = const Color.fromARGB(255, 127, 127, 127),
       this.selectedBorderColor = Colors.black,
