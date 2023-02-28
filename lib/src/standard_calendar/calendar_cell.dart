@@ -108,7 +108,7 @@ class CellWidget extends StatelessWidget {
                     ? isCurrent
                         ? isSelected
                             ? configStandardCalendar.selectedStyle
-                            : configMonthAndYear.currentStyle
+                            : configStandardCalendar.currentStyle
                         : isSelected
                             ? configStandardCalendar.selectedStyle
                             : configStandardCalendar.monthDaysStyle
