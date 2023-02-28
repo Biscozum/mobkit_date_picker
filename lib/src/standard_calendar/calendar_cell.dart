@@ -8,7 +8,6 @@ class CellWidget extends StatelessWidget {
   final bool isEnabled;
   final bool isFirstLastSelectedItem;
   final bool isWeekDaysBar;
-  final Color? weekDaysBarBorderColor;
   final bool isCurrent;
   final CalendarType calendarType;
   late final MobkitCalendarConfigModel configStandardCalendar;
@@ -19,7 +18,6 @@ class CellWidget extends StatelessWidget {
     this.isEnabled = true,
     this.isFirstLastSelectedItem = false,
     this.isWeekDaysBar = false,
-    this.weekDaysBarBorderColor,
     this.isCurrent = false,
     this.calendarType = CalendarType.standardCalendar,
     MobkitCalendarConfigModel? standardCalendarConfig,
@@ -57,7 +55,7 @@ class CellWidget extends StatelessWidget {
                               : 1.0)
                       : configMonthAndYear.enabledColor,
               border: isWeekDaysBar
-                  ? Border.all(width: 1, color: weekDaysBarBorderColor ?? configStandardCalendar.primaryColor)
+                  ? Border.all(width: 1, color: configStandardCalendar.weekDaysBarBorderColor)
                   : Border.all(
                       width: configMonthAndYear.borderWidth,
                       color: isSelected
