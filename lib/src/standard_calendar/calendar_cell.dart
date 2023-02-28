@@ -93,7 +93,7 @@ class CellWidget extends StatelessWidget {
                           : configStandardCalendar.enabledColor
                   : configStandardCalendar.disabledColor,
               border: isWeekDaysBar
-                  ? Border.all(width: configStandardCalendar.borderWidth, color: configStandardCalendar.primaryColor)
+                  ? Border.all(width: 1, color: configStandardCalendar.weekDaysBarBorderColor)
                   : Border.all(
                       width: configStandardCalendar.borderWidth,
                       color: isSelected
