@@ -29,7 +29,7 @@ class MobkitCalendar extends StatelessWidget {
     initializeDateFormatting();
     ValueNotifier<DateTime> widgetCalendarDate = ValueNotifier<DateTime>(calendarDate);
     ValueNotifier<DateTime> widgetSelectedDate = ValueNotifier<DateTime>(selectDate);
-    var months = MonthSelectionBar(widgetCalendarDate);
+    var months = MonthSelectionBar(widgetCalendarDate, config);
     return StandardPicker(
       config: config,
       months: months,
