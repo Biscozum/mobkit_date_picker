@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-
+import '../../mobkit_date_picker.dart';
 import 'calendar_buttons.dart';
 
 class MonthSelectionBar extends StatelessWidget {
   final double _itemSpace = 14;
   final ValueNotifier<DateTime> calendarDate;
-  const MonthSelectionBar(this.calendarDate, {Key? key}) : super(key: key);
+  final MobkitCalendarConfigModel? config;
+  const MonthSelectionBar(this.calendarDate, this.config, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -48,6 +49,6 @@ class MonthSelectionBar extends StatelessWidget {
   goPreviousMonth() => changeMonth(calendarDate, -1);
 
   String _parseDateStr(DateTime date) {
-    return DateFormat('MMMM').format(date);
+    return DateFormat('MMMM', config?.locale).format(date);
   }
 }
