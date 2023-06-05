@@ -81,8 +81,8 @@ class _MonthListState extends State<MonthList> {
       return false;
     }
     if (newDate.isWeekend() && config.disableWeekendsDays) return false;
-    if (newDate.month != date.month && !config.disableOffDays) return true;
-    return false;
+    if (newDate.month != date.month && config.disableOffDays) return false;
+    return true;
   }
 }
 
