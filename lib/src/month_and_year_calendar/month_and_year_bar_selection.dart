@@ -80,7 +80,7 @@ class _MonthListState extends State<MonthList> {
     if (config.disabledDates != null && config.disabledDates!.any((element) => element.isSameDay(date))) {
       return false;
     }
-    if (newDate.isWeekend() && !config.disableWeekendsDays) return true;
+    if (newDate.isWeekend() && config.disableWeekendsDays) return false;
     if (newDate.month != date.month && !config.disableOffDays) return true;
     return false;
   }
