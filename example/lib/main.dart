@@ -30,7 +30,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   MobkitMonthAndYearCalendar? monthAndYearCalendar;
-  MobkitCalendar? calendar;
+  MobkitPicker? calendar;
 
   Future<void> pickDateModalMonthAndYear(BuildContext context, MobkitMonthAndYearCalendarSelectionType type) {
     monthAndYearCalendar = MobkitMonthAndYearCalendar(
@@ -69,11 +69,11 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
-  Future<void> pickDateModalCalendar(BuildContext context, MobkitCalendarSelectionType type) {
-    calendar = MobkitCalendar(
+  Future<void> pickDateModalPicker(BuildContext context, MobkitCalendarSelectionType type) {
+    calendar = MobkitPicker(
       selectedDate: null,
       calendarDate: DateTime.now(),
-      config: MobkitCalendarConfigModel(selectionType: type, locale: 'en_EN'),
+      config: MobkitPickerConfigModel(selectionType: type, locale: 'en_EN'),
       onSelectionChange: (value) {
         setState(() {
           date = value.toString();
@@ -101,6 +101,29 @@ class _MyHomePageState extends State<MyHomePage> {
             ));
       },
     );
+  }
+
+  pickDateCalendar(BuildContext context, MobkitCalendarSelectionType type) {
+    // var calendar = MobkitCalendarWidget(
+    //   calendarDate: DateTime.now(),
+    //   customCalendarModel: ,      selectedDate: DateTime.now(),
+    //   config: MobkitCalendarConfigModel(selectionType: type, locale: 'en_EN'),
+    // );
+    // return showModalBottomSheet<void>(
+    //   isScrollControlled: true,
+    //   backgroundColor: Colors.transparent,
+    //   context: context,
+    //   builder: (BuildContext context1) {
+    //     return Container(
+    //         height: MediaQuery.of(context).size.height * 0.80,
+    //         decoration: const BoxDecoration(
+    //             color: Colors.white,
+    //             borderRadius: BorderRadius.only(topLeft: Radius.circular(20.0), topRight: Radius.circular(20.0))),
+    //         child: SizedBox(
+    //           child: calendar,
+    //         ));
+    //   },
+    // );
   }
 
   String firstDateStr = "";
@@ -143,15 +166,23 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             TextButton(
               onPressed: () {
-                pickDateModalCalendar(context, MobkitCalendarSelectionType.rangeTap);
+                pickDateModalPicker(context, MobkitCalendarSelectionType.rangeTap);
               },
               child: const Text(
-                "Calendar range tap",
+                "Picker range tap",
               ),
             ),
             TextButton(
               onPressed: () {
-                pickDateModalCalendar(context, MobkitCalendarSelectionType.singleTap);
+                pickDateModalPicker(context, MobkitCalendarSelectionType.singleTap);
+              },
+              child: const Text(
+                "Picker single tap",
+              ),
+            ),
+            TextButton(
+              onPressed: () {
+                pickDateCalendar(context, MobkitCalendarSelectionType.singleTap);
               },
               child: const Text(
                 "Calendar single tap",

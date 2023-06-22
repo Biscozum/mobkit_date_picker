@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:mobkit_date_picker/src/standard_calendar/model/calendar_config_model.dart';
-import 'package:mobkit_date_picker/src/standard_calendar/calendar_date_selection_bar.dart';
-import 'package:mobkit_date_picker/src/standard_calendar/calendar_header.dart';
-import 'package:mobkit_date_picker/src/standard_calendar/calendar_month_selection_bar.dart';
-import 'package:mobkit_date_picker/src/standard_calendar/calendar_weekdays_bar.dart';
-import 'package:mobkit_date_picker/src/standard_calendar/calendar_year_selection_bar.dart';
+import 'package:mobkit_date_picker/src/pickers/standard_picker/picker_date_selection_bar.dart';
+import 'package:mobkit_date_picker/src/pickers/widgets/picker_header.dart';
+import 'package:mobkit_date_picker/src/pickers/standard_picker/picker_month_selection_bar.dart';
+import 'package:mobkit_date_picker/src/pickers/standard_picker/picker_weekdays_bar.dart';
+import 'package:mobkit_date_picker/src/pickers/standard_picker/picker_year_selection_bar.dart';
+
+import '../../../mobkit_date_picker.dart';
 
 class StandardPicker extends StatelessWidget {
   const StandardPicker({
@@ -18,7 +19,7 @@ class StandardPicker extends StatelessWidget {
     required this.onRangeSelectionChange,
   }) : super(key: key);
 
-  final MobkitCalendarConfigModel? config;
+  final MobkitPickerConfigModel? config;
   final MonthSelectionBar months;
   final ValueNotifier<DateTime> calendarDate;
   final ValueNotifier<DateTime> selectedDate;

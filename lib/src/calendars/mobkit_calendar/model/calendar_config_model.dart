@@ -16,12 +16,6 @@ class MobkitCalendarConfigModel {
   /// Whether to show the bar showing the days of the week above the date picker
   bool disableWeekendsDays;
 
-  /// Specifies the date picker type of the date picker.
-  MobkitCalendarSelectionType selectionType;
-
-  /// Specifies what type of date the date picker will select.
-  PickerType pickerType = PickerType.standard;
-
   /// The date picker closes before the specified date.
   DateTime? disableBefore;
 
@@ -92,7 +86,6 @@ class MobkitCalendarConfigModel {
       this.showAllDays = true,
       this.disableOffDays = true,
       this.disableWeekendsDays = true,
-      this.selectionType = MobkitCalendarSelectionType.singleTap,
       this.disableBefore,
       this.disableAfter,
       this.disabledDates,
@@ -116,7 +109,3 @@ class MobkitCalendarConfigModel {
       this.currentStyle = const TextStyle(color: Color.fromRGBO(253, 165, 46, 1), fontWeight: FontWeight.bold),
       this.selectedStyle = const TextStyle(color: Colors.white, fontWeight: FontWeight.bold)});
 }
-
-enum MobkitCalendarSelectionType { rangeTap, singleTap }
-
-enum PickerType { month, monthAndYear, standard }

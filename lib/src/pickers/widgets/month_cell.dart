@@ -3,8 +3,8 @@ import 'package:mobkit_date_picker/src/extensions/date_extensions.dart';
 import 'package:mobkit_date_picker/src/model/calendar_type_model.dart';
 import 'package:intl/intl.dart';
 
-import '../../mobkit_date_picker.dart';
-import '../standard_calendar/calendar_cell.dart';
+import '../../../mobkit_date_picker.dart';
+import 'picker_cell.dart';
 
 class MonthCell extends StatelessWidget {
   final DateTime date;

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../../mobkit_date_picker.dart';
-import '../model/calendar_type_model.dart';
+import '../../../mobkit_date_picker.dart';
+import '../../model/calendar_type_model.dart';
 
 class CellWidget extends StatelessWidget {
   final String text;
@@ -10,7 +10,7 @@ class CellWidget extends StatelessWidget {
   final bool isWeekDaysBar;
   final bool isCurrent;
   final CalendarType calendarType;
-  late final MobkitCalendarConfigModel configStandardCalendar;
+  late final MobkitPickerConfigModel configStandardCalendar;
   late final MobkitMonthAndYearCalendarConfigModel configMonthAndYear;
   CellWidget(
     this.text, {
@@ -20,12 +20,12 @@ class CellWidget extends StatelessWidget {
     this.isWeekDaysBar = false,
     this.isCurrent = false,
     this.calendarType = CalendarType.standardCalendar,
-    MobkitCalendarConfigModel? standardCalendarConfig,
+    MobkitPickerConfigModel? standardCalendarConfig,
     MobkitMonthAndYearCalendarConfigModel? monthAndYearConfig,
     Key? key,
   }) : super(key: key) {
     if (standardCalendarConfig == null) {
-      configStandardCalendar = MobkitCalendarConfigModel();
+      configStandardCalendar = MobkitPickerConfigModel();
     } else {
       configStandardCalendar = standardCalendarConfig;
     }

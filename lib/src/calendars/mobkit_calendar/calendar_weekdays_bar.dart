@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import '../../../mobkit_date_picker.dart';
 import 'calendar_cell.dart';
-import 'model/calendar_config_model.dart';
 
-class WeekDaysBar extends StatelessWidget {
-  const WeekDaysBar({Key? key, this.config}) : super(key: key);
+class CalendarWeekDaysBar extends StatelessWidget {
+  const CalendarWeekDaysBar({Key? key, this.config, required this.customCalendarModel}) : super(key: key);
   final MobkitCalendarConfigModel? config;
+  final List<MobkitCalendarAppointmentModel> customCalendarModel;
   @override
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: _getWeekDays(DateTime.monday)
-          .map((e) => CellWidget(
+          .map((e) => CalendarCellWidget(
                 e,
                 isWeekDaysBar: true,
                 standardCalendarConfig: config,

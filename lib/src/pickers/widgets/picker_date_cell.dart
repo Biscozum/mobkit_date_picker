@@ -3,20 +3,20 @@ import 'package:mobkit_date_picker/src/extensions/date_extensions.dart';
 import 'package:mobkit_date_picker/src/model/calendar_type_model.dart';
 import 'package:intl/intl.dart';
 
-import 'calendar_cell.dart';
-import 'model/calendar_config_model.dart';
+import 'picker_cell.dart';
+import '../standard_picker/model/picker_config_model.dart';
 
-class DateCell extends StatelessWidget {
+class PickerDateCell extends StatelessWidget {
   final DateTime date;
   final bool enabled;
   final ValueNotifier<DateTime> selectedDate;
-  final MobkitCalendarConfigModel? config;
+  final MobkitPickerConfigModel? config;
   final bool isSelectedNew;
   final bool isFirstLastSelectedItem;
   final ValueChanged<DateTime> onSelectionChange;
   final Function(DateTime, DateTime) onRangeSelectionChange;
-  const DateCell(this.date, this.isSelectedNew, this.isFirstLastSelectedItem, this.selectedDate, this.onSelectionChange,
-      this.onRangeSelectionChange,
+  const PickerDateCell(this.date, this.isSelectedNew, this.isFirstLastSelectedItem, this.selectedDate,
+      this.onSelectionChange, this.onRangeSelectionChange,
       {Key? key, this.config, this.enabled = true})
       : super(key: key);
 

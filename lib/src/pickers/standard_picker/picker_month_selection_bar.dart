@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import '../../mobkit_date_picker.dart';
-import 'calendar_buttons.dart';
+import '../../../mobkit_date_picker.dart';
+import '../widgets/picker_buttons.dart';
 
 class MonthSelectionBar extends StatelessWidget {
   final double _itemSpace = 14;
   final ValueNotifier<DateTime> calendarDate;
-  final MobkitCalendarConfigModel? config;
+  final MobkitPickerConfigModel? config;
   const MonthSelectionBar(this.calendarDate, this.config, {Key? key}) : super(key: key);
 
   @override

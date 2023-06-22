@@ -1,3 +1,7 @@
+import 'package:intl/intl.dart';
+
+import 'model/week_dates_model.dart';
+
 extension DateTimeExtension on DateTime {
   DateTime next(int day) {
     if (day == weekday) {
@@ -60,4 +64,49 @@ extension DateTimeExtension on DateTime {
   bool isSameDay(DateTime other) {
     return year == other.year && month == other.month && day == other.day;
   }
+
+  int numOfWeeks(int year) {
+    DateTime dec28 = DateTime(year, 12, 28);
+    int dayOfDec28 = int.parse(DateFormat("D").format(dec28));
+    return ((dayOfDec28 - dec28.weekday + 10) / 7).floor();
+  }
+
+  int weekNumber(DateTime date) {
+    int dayOfYear = int.parse(DateFormat("D").format(date));
+    int woy = ((dayOfYear - date.weekday + 10) / 7).floor();
+    if (woy < 1) {
+      woy = numOfWeeks(date.year - 1);
+    } else if (woy > numOfWeeks(date.year)) {
+      woy = 1;
+    }
+    return woy;
+  }
+}
+
+WeekDates getDatesFromWeekNumber(int year, int weekNumber) {
+  final DateTime firstDayOfYear = DateTime.utc(year, 1, 1);
+
+  final int firstDayOfWeek = firstDayOfYear.weekday;
+
+  final int daysToFirstWeek = (8 - firstDayOfWeek) % 7;
+
+  final DateTime firstDayOfGivenWeek = firstDayOfYear.add(Duration(days: daysToFirstWeek + (weekNumber - 1) * 7));
+
+  final DateTime lastDayOfGivenWeek = firstDayOfGivenWeek.add(const Duration(days: 6));
+
+  return WeekDates(from: firstDayOfGivenWeek, to: lastDayOfGivenWeek);
+}
+
+List<DateTime> getDaysInBetween(DateTime startDate, DateTime endDate) {
+  List<DateTime> days = [];
+  for (int i = 0; i <= endDate.difference(startDate).inDays; i++) {
+    days.add(startDate.add(Duration(days: i)));
+  }
+  return days;
+}
+
+DateTime addMonth(DateTime date, int amount) {
+  var newMonth = date.month + amount;
+  date = DateTime(date.year, newMonth, date.day);
+  return date;
 }

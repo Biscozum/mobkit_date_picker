@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:mobkit_date_picker/src/extensions/date_extensions.dart';
-import 'model/calendar_config_model.dart';
-import 'calendar_date_cell.dart';
-import 'datecell_renderobject.dart';
+import 'model/picker_config_model.dart';
+import '../widgets/picker_date_cell.dart';
+import '../widgets/datecell_renderobject.dart';
 
 class DateList extends StatefulWidget {
   final DateTime date;
   final ValueNotifier<DateTime> selectedDate;
   final ValueNotifier<List<DateTime>> selectedDates;
 
-  final MobkitCalendarConfigModel? config;
+  final MobkitPickerConfigModel? config;
   final ValueChanged<DateTime> onSelectionChange;
   final Function(DateTime, DateTime) onRangeSelectionChange;
   const DateList(this.date, this.selectedDate, this.selectedDates,
@@ -50,7 +50,7 @@ class _DateListState extends State<DateList> {
   List<TableRow> getDates(
       DateTime date,
       ValueNotifier<DateTime> selectedDate,
-      final MobkitCalendarConfigModel? config,
+      final MobkitPickerConfigModel? config,
       ValueNotifier<List<DateTime>> selectedDates,
       ValueChanged<DateTime> onSelectionChange,
       Function(DateTime, DateTime) onRangeSelectionChange) {
@@ -65,7 +65,7 @@ class _DateListState extends State<DateList> {
         if (config != null) {
           cellList.add(Foo(
             index: newDate.day,
-            child: DateCell(
+            child: PickerDateCell(
               newDate,
               selectedDates.value.contains(newDate),
               selectedDates.value.isNotEmpty
@@ -91,7 +91,7 @@ class _DateListState extends State<DateList> {
     return rowList;
   }
 
-  bool checkConfigForEnable(DateTime newDate, DateTime date, MobkitCalendarConfigModel? config) {
+  bool checkConfigForEnable(DateTime newDate, DateTime date, MobkitPickerConfigModel? config) {
     if (config == null) return false;
     if (config.disableBefore != null && date.isBefore(config.disableBefore!)) return false;
 
@@ -111,7 +111,7 @@ class DateSelectionBar extends StatefulWidget {
   final ValueNotifier<DateTime> date;
   final ValueNotifier<DateTime> selectedDate;
   final ValueNotifier<List<DateTime>> selectedDates;
-  final MobkitCalendarConfigModel? config;
+  final MobkitPickerConfigModel? config;
   final ValueChanged<DateTime> onSelectionChange;
   final Function(DateTime, DateTime) onRangeSelectionChange;
   const DateSelectionBar(this.date, this.selectedDate, this.selectedDates,
