@@ -196,21 +196,19 @@ class _MobkitCalendarWidgetState extends State<MobkitCalendarWidget> {
                   DateTime changedDate = addMonth(withRecurrencyAppointments[i].appointmentStartDate, y);
                   if (withRecurrencyAppointments[i].recurrenceModel!.endDate.isAfter(changedDate)) {
                     int monthDays = DateUtils.getDaysInMonth(changedDate.year, changedDate.month);
+                    int repetition = 0;
                     for (int d = 1; d < monthDays; d++) {
-                      // TODO weekday ' gore duzenlenicek
-                      if (dayOfMonthAndRepetition.key == DateTime(changedDate.year, d, changedDate.day).weekday) {
-                        for (int r = 1; r <= dayOfMonthAndRepetition.value; r++) {
-                          if (r == dayOfMonthAndRepetition.value) {
-                            MobkitCalendarAppointmentModel addAppointmentModel = MobkitCalendarAppointmentModel(
-                                title: withRecurrencyAppointments[i].title,
-                                appointmentStartDate: DateTime(changedDate.year, d, changedDate.day),
-                                appointmentEndDate: DateTime(changedDate.year, d, changedDate.day),
-                                color: withRecurrencyAppointments[i].color,
-                                isAllDay: withRecurrencyAppointments[i].isAllDay,
-                                detail: withRecurrencyAppointments[i].detail,
-                                recurrenceModel: null);
-                            addNewAppointments.add(addAppointmentModel);
-                          }
+                      if (dayOfMonthAndRepetition.key == DateTime(changedDate.year, changedDate.month, d).weekday) {
+                        repetition++;
+                        if (repetition == dayOfMonthAndRepetition.value) {
+                          addNewAppointments.add(MobkitCalendarAppointmentModel(
+                              title: withRecurrencyAppointments[i].title,
+                              appointmentStartDate: DateTime(changedDate.year, changedDate.month, d),
+                              appointmentEndDate: DateTime(changedDate.year, changedDate.month, d),
+                              color: withRecurrencyAppointments[i].color,
+                              isAllDay: withRecurrencyAppointments[i].isAllDay,
+                              detail: withRecurrencyAppointments[i].detail,
+                              recurrenceModel: null));
                         }
                       }
                     }

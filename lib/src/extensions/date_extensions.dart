@@ -110,3 +110,39 @@ DateTime addMonth(DateTime date, int amount) {
   date = DateTime(date.year, newMonth, date.day);
   return date;
 }
+
+DateTime findFirstDateOfTheYear(DateTime dateTime) {
+  return DateTime(dateTime.year, 1, 1);
+}
+
+DateTime findLastDateOfTheYear(DateTime dateTime) {
+  return DateTime(dateTime.year, 12, 31);
+}
+
+DateTime findFirstDateOfTheMonth(DateTime dateTime) {
+  return DateTime(dateTime.year, dateTime.month, 1);
+}
+
+DateTime findLastDateOfTheMonth(DateTime dateTime) {
+  return DateTime(dateTime.year, dateTime.month + 1, 0);
+}
+
+DateTime findLastDateOfTheWeek(DateTime dateTime) {
+  return dateTime.add(Duration(days: DateTime.daysPerWeek - dateTime.weekday));
+}
+
+DateTime findFirstDateOfTheWeek(DateTime dateTime) {
+  return dateTime.subtract(Duration(days: dateTime.weekday - 1));
+}
+
+DateTime getNextWeekDay(int weekDay, {DateTime? from}) {
+  DateTime now = DateTime.now();
+
+  if (from != null) {
+    now = from;
+  }
+
+  int remainDays = weekDay - now.weekday + 7;
+
+  return now.add(Duration(days: remainDays));
+}
