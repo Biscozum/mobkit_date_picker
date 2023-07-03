@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 
 import 'picker_arrow_button.dart';
 
-class CalendarBackButton extends StatelessWidget {
+class BackButtonWidget extends StatelessWidget {
   final Function()? onPressed;
-  const CalendarBackButton(this.onPressed, {Key? key}) : super(key: key);
+  const BackButtonWidget(this.onPressed, {Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return CalendarArrowButton(
@@ -14,9 +14,9 @@ class CalendarBackButton extends StatelessWidget {
   }
 }
 
-class CalendarForwardButton extends StatelessWidget {
+class ForwardButtonWidget extends StatelessWidget {
   final Function()? onPressed;
-  const CalendarForwardButton(this.onPressed, {Key? key}) : super(key: key);
+  const ForwardButtonWidget(this.onPressed, {Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return CalendarArrowButton(

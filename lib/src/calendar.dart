@@ -128,7 +128,7 @@ class _MobkitCalendarWidgetState extends State<MobkitCalendarWidget> {
                 addNewAppointments.add(addAppointmentModel);
               }
             }
-            //Haftalık tekrar döngüsü
+            //Haftalik tekrar döngüsü
             if (withRecurrencyAppointments[i].recurrenceModel!.frequency is WeeklyFrequency) {
               List<int> dayOfWeekList =
                   (withRecurrencyAppointments[i].recurrenceModel!.frequency as WeeklyFrequency).daysOfWeek;
@@ -163,7 +163,6 @@ class _MobkitCalendarWidgetState extends State<MobkitCalendarWidget> {
                 }
               }
             }
-
             //Aylik tekrar döngüsü
             if (withRecurrencyAppointments[i].recurrenceModel!.frequency is MonthlyFrequency) {
               for (int y = 1; y < withRecurrencyAppointments[i].recurrenceModel!.interval + 1; y++) {
@@ -221,8 +220,8 @@ class _MobkitCalendarWidgetState extends State<MobkitCalendarWidget> {
             continue;
           }
         }
-        lastAppointments.addAll(widget.appointmentModel);
       }
+      lastAppointments.addAll(widget.appointmentModel);
       setState(() {
         isLoadData = true;
       });

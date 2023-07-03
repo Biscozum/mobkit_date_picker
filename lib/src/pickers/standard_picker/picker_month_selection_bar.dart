@@ -15,7 +15,7 @@ class MonthSelectionBar extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       mainAxisSize: MainAxisSize.max,
       children: [
-        CalendarBackButton(goPreviousMonth),
+        BackButtonWidget(goPreviousMonth),
         SizedBox(
           width: _itemSpace,
         ),
@@ -35,7 +35,7 @@ class MonthSelectionBar extends StatelessWidget {
         SizedBox(
           width: _itemSpace,
         ),
-        CalendarForwardButton(goNextMonth),
+        ForwardButtonWidget(goNextMonth),
       ],
     );
   }

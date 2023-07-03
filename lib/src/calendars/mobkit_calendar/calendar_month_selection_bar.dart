@@ -15,7 +15,9 @@ class CalendarMonthSelectionBar extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       mainAxisSize: MainAxisSize.max,
       children: [
-        CalendarBackButton(goPreviousMonth),
+        config?.mobkitCalendarViewType == MobkitCalendarViewType.monthly
+            ? CalendarBackButton(goPreviousMonth)
+            : Container(),
         SizedBox(
           width: _itemSpace,
         ),
@@ -35,7 +37,9 @@ class CalendarMonthSelectionBar extends StatelessWidget {
         SizedBox(
           width: _itemSpace,
         ),
-        CalendarForwardButton(goNextMonth),
+        config?.mobkitCalendarViewType == MobkitCalendarViewType.monthly
+            ? CalendarForwardButton(goNextMonth)
+            : Container(),
       ],
     );
   }

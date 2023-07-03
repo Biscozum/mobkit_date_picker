@@ -78,34 +78,40 @@ class MobkitCalendarConfigModel {
 
   Color weekDaysBarBorderColor;
 
+  MobkitCalendarViewType mobkitCalendarViewType;
+
   /// The textstyle that the selected days in the date picker will have.
   TextStyle selectedStyle;
-  MobkitCalendarConfigModel(
-      {this.title,
-      this.locale = 'tr_Tr',
-      this.showAllDays = true,
-      this.disableOffDays = true,
-      this.disableWeekendsDays = true,
-      this.disableBefore,
-      this.disableAfter,
-      this.disabledDates,
-      this.itemSpace = const EdgeInsets.all(2.0),
-      this.animationDuration = const Duration(milliseconds: 300),
-      this.enabledColor = Colors.transparent,
-      this.disabledColor = const Color.fromARGB(255, 127, 127, 127),
-      this.selectedColor = const Color.fromRGBO(253, 165, 46, 1),
-      this.isFirstLastItemColor = const Color.fromARGB(255, 236, 10, 10),
-      this.primaryColor = const Color.fromRGBO(253, 165, 46, 1),
-      this.weekDaysBarBorderColor = const Color.fromRGBO(253, 165, 46, 1),
-      this.enabledBorderColor = Colors.transparent,
-      this.disabledBorderColor = const Color.fromARGB(255, 127, 127, 127),
-      this.selectedBorderColor = Colors.black,
-      this.borderWidth = 1,
-      this.borderRadius = const BorderRadius.all(Radius.circular(4)),
-      this.enableStyle = const TextStyle(fontWeight: FontWeight.bold),
-      this.monthDaysStyle = const TextStyle(fontWeight: FontWeight.normal),
-      this.weekDaysStyle = const TextStyle(color: Color.fromRGBO(253, 165, 46, 1), fontWeight: FontWeight.bold),
-      this.disabledStyle = const TextStyle(color: Color.fromARGB(255, 127, 127, 127), fontWeight: FontWeight.bold),
-      this.currentStyle = const TextStyle(color: Color.fromRGBO(253, 165, 46, 1), fontWeight: FontWeight.bold),
-      this.selectedStyle = const TextStyle(color: Colors.white, fontWeight: FontWeight.bold)});
+  MobkitCalendarConfigModel({
+    this.title,
+    this.locale = 'tr_Tr',
+    this.showAllDays = true,
+    this.disableOffDays = true,
+    this.disableWeekendsDays = true,
+    this.disableBefore,
+    this.disableAfter,
+    this.disabledDates,
+    this.itemSpace = const EdgeInsets.all(2.0),
+    this.animationDuration = const Duration(milliseconds: 300),
+    this.enabledColor = Colors.transparent,
+    this.disabledColor = const Color.fromARGB(255, 127, 127, 127),
+    this.selectedColor = const Color.fromRGBO(253, 165, 46, 1),
+    this.isFirstLastItemColor = const Color.fromARGB(255, 236, 10, 10),
+    this.primaryColor = const Color.fromRGBO(253, 165, 46, 1),
+    this.weekDaysBarBorderColor = const Color.fromRGBO(253, 165, 46, 1),
+    this.enabledBorderColor = Colors.transparent,
+    this.disabledBorderColor = const Color.fromARGB(255, 127, 127, 127),
+    this.selectedBorderColor = Colors.black,
+    this.borderWidth = 1,
+    this.borderRadius = const BorderRadius.all(Radius.circular(4)),
+    this.enableStyle = const TextStyle(fontWeight: FontWeight.bold),
+    this.monthDaysStyle = const TextStyle(fontWeight: FontWeight.normal),
+    this.weekDaysStyle = const TextStyle(color: Color.fromRGBO(253, 165, 46, 1), fontWeight: FontWeight.bold),
+    this.disabledStyle = const TextStyle(color: Color.fromARGB(255, 127, 127, 127), fontWeight: FontWeight.bold),
+    this.currentStyle = const TextStyle(color: Color.fromRGBO(253, 165, 46, 1), fontWeight: FontWeight.bold),
+    this.selectedStyle = const TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+    this.mobkitCalendarViewType = MobkitCalendarViewType.monthly,
+  });
 }
+
+enum MobkitCalendarViewType { monthly, weekly, daily }

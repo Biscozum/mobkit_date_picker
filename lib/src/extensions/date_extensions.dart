@@ -137,12 +137,9 @@ DateTime findFirstDateOfTheWeek(DateTime dateTime) {
 
 DateTime getNextWeekDay(int weekDay, {DateTime? from}) {
   DateTime now = DateTime.now();
-
   if (from != null) {
     now = from;
   }
-
   int remainDays = weekDay - now.weekday + 7;
-
   return now.add(Duration(days: remainDays));
 }

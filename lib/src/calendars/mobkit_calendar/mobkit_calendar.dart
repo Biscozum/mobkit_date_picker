@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mobkit_date_picker/src/calendars/mobkit_calendar/calendar_date_bar.dart';
 import 'package:mobkit_date_picker/src/calendars/mobkit_calendar/model/mobkit_calendar_appointment_model.dart';
+import 'package:mobkit_date_picker/src/extensions/date_extensions.dart';
 import 'package:mobkit_date_picker/src/pickers/widgets/picker_header.dart';
 import 'calendar_month_selection_bar.dart';
 import 'calendar_weekdays_bar.dart';
@@ -26,7 +27,7 @@ class MobkitCalendar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
+      mainAxisSize: MainAxisSize.max,
       children: [
         if (config?.title != null) Header(config!.title!),
         const SizedBox(
@@ -40,7 +41,7 @@ class MobkitCalendar extends StatelessWidget {
               const SizedBox(
                 width: 10,
               ),
-              Expanded(flex: 6, child: CalendarYearSelectionBar(calendarDate)),
+              Expanded(flex: 6, child: CalendarYearSelectionBar(calendarDate, config)),
             ],
           ),
         ),
@@ -54,17 +55,115 @@ class MobkitCalendar extends StatelessWidget {
         const SizedBox(
           height: 10,
         ),
-        SizedBox(
-            height: 330,
-            child: Container(
-                color: Colors.transparent,
-                child: DateSelectionBar(
-                  calendarDate,
-                  selectedDate,
-                  onSelectionChange: onSelectionChange,
-                  customCalendarModel: appointmentModel,
-                  config: config,
-                ))),
+        Container(
+            color: Colors.transparent,
+            child: DateSelectionBar(
+              calendarDate,
+              selectedDate,
+              onSelectionChange: onSelectionChange,
+              customCalendarModel: appointmentModel,
+              config: config,
+            )),
+        config?.mobkitCalendarViewType == MobkitCalendarViewType.daily
+            ? const SizedBox(
+                height: 24,
+              )
+            : Container(),
+        config?.mobkitCalendarViewType == MobkitCalendarViewType.daily
+            ? ValueListenableBuilder(
+                valueListenable: selectedDate,
+                builder: (_, DateTime date, __) {
+                  List<MobkitCalendarAppointmentModel> model = appointmentModel
+                      .where((element) =>
+                          (DateTime(selectedDate.value.year, selectedDate.value.month, selectedDate.value.day)
+                                  .isBetween(element.appointmentStartDate, element.appointmentEndDate) ??
+                              false) ||
+                          DateTime(selectedDate.value.year, selectedDate.value.month, selectedDate.value.day)
+                              .isSameDay(element.appointmentStartDate))
+                      .toList();
+
+                  return Expanded(
+                    child: ListView.builder(
+                      itemCount: 23,
+                      scrollDirection: Axis.vertical,
+                      itemBuilder: (context, index) {
+                        List<MobkitCalendarAppointmentModel> list = model
+                            .where((element) =>
+                                (!element.isAllDay) &&
+                                (DateTime(selectedDate.value.year, selectedDate.value.month, selectedDate.value.day,
+                                            index + 1)
+                                        .isBetween(element.appointmentStartDate, element.appointmentEndDate) ??
+                                    false) &&
+                                (DateTime(selectedDate.value.year, selectedDate.value.month, selectedDate.value.day,
+                                            index + 1)
+                                        .hour !=
+                                    element.appointmentEndDate.hour))
+                            .toList();
+                        return Padding(
+                          padding: const EdgeInsets.only(left: 12, right: 12),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                "${(index + 1).toString()}:00",
+                                style: const TextStyle(color: Colors.black, fontSize: 18),
+                              ),
+                              Column(
+                                children: [
+                                  list.isNotEmpty
+                                      ? Container()
+                                      : Padding(
+                                          padding: const EdgeInsets.only(top: 12),
+                                          child: SizedBox(
+                                            width: MediaQuery.of(context).size.width * 0.8,
+                                            child: const Divider(
+                                              thickness: 1,
+                                              height: 1,
+                                              color: Colors.grey,
+                                            ),
+                                          ),
+                                        ),
+                                  list.isNotEmpty
+                                      ? SizedBox(
+                                          width: MediaQuery.of(context).size.width * 0.8,
+                                          height: 60,
+                                          child: ListView.builder(
+                                            itemCount: list.length,
+                                            scrollDirection: Axis.horizontal,
+                                            itemBuilder: (context, index1) {
+                                              return SizedBox(
+                                                width: (MediaQuery.of(context).size.width * 0.8) / list.length,
+                                                child: Container(
+                                                  width: MediaQuery.of(context).size.width * 0.8,
+                                                  color: list[index1].color,
+                                                  child: Align(
+                                                    alignment: Alignment.topLeft,
+                                                    child: Text(
+                                                      list[index1].title,
+                                                      style: TextStyle(color: Colors.white),
+                                                    ),
+                                                  ),
+                                                ),
+                                              );
+                                            },
+                                          ),
+                                        )
+                                      : SizedBox(
+                                          height: 60,
+                                          width: MediaQuery.of(context).size.width * 0.8,
+                                        )
+                                ],
+                              )
+                            ],
+                          ),
+                        );
+                      },
+                    ),
+                  );
+                },
+              )
+            : Container(),
       ],
     );
   }

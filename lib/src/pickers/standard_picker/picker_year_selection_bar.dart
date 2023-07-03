@@ -12,7 +12,7 @@ class YearSelectionBar extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
-        CalendarBackButton(goPreviousYear),
+        BackButtonWidget(goPreviousYear),
         SizedBox(
           width: _itemSpace,
         ),
@@ -27,7 +27,7 @@ class YearSelectionBar extends StatelessWidget {
         SizedBox(
           width: _itemSpace,
         ),
-        CalendarForwardButton(goNextYear),
+        ForwardButtonWidget(goNextYear),
       ],
     );
   }
