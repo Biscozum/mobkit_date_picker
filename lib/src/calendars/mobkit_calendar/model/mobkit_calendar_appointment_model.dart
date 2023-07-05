@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mobkit_date_picker/src/calendars/mobkit_calendar/model/recurrence_model.dart';
 
 class MobkitCalendarAppointmentModel {
+  int? index;
   String title;
   DateTime appointmentStartDate;
   DateTime appointmentEndDate;

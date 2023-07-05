@@ -113,7 +113,7 @@ class CalendarCellWidget extends StatelessWidget {
       List<MobkitCalendarAppointmentModel> listModel =
           showedCustomCalendarModelList.where((element) => !element.isAllDay).toList();
       if (listModel.isNotEmpty) {
-        for (int i = 0; i < listModel.length; i++) {
+        for (int i = 0; listModel.length > 3 ? i < 3 : i < listModel.length; i++) {
           items.add(
             Padding(
               padding: const EdgeInsets.all(1),

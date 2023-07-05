@@ -46,10 +46,14 @@ class _DateSelectionBarState extends State<DateSelectionBar> {
               },
               onPanEnd: (details) {
                 if (swipeDirection == 'left') {
-                  goNextWeek();
+                  if (widget.config?.mobkitCalendarViewType == MobkitCalendarViewType.daily) {
+                    goNextWeek();
+                  }
                 }
                 if (swipeDirection == 'right') {
-                  goPreviousWeek();
+                  if (widget.config?.mobkitCalendarViewType == MobkitCalendarViewType.daily) {
+                    goPreviousWeek();
+                  }
                 }
               },
               child: DateList(
